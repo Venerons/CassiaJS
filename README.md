@@ -4,14 +4,18 @@ _Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
 
 CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptopraphic algoritms.
 
+To import the library, use this code between the <head> tags on your page:
+
+	<script src="cassia.js"></script>
+
 ## API
 
 Albam Cipher:
 
-	Cassia.albam.encrypt(message);
-	Cassia.albam.decrypt(message);
+	var encrypted = Cassia.albam.encrypt("Message");
+	var encrypted = Cassia.albam.decrypt("Message");
 
 Cesare Cipher (Caesar Cipher):
 
-	Cassia.cesare.encrypt(message);
-	Cassia.cesare.decrypt(message);
+	var encrypted = Cassia.cesare.encrypt("Message");
+	var encrypted = Cassia.cesare.decrypt("Message");
