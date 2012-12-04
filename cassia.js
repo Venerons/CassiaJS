@@ -1,3 +1,5 @@
+// Copyright (c) 2012 Daniele Veneroni. Released under MIT License
+
 var cesare = {
     encrypt: function(messaggio) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
