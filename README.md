@@ -6,7 +6,7 @@ CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptoprap
 
 ## API
 
-* Cesare Cipher:
+Cesare Cipher:
 
 	Cassia.cesare.encrypt(message);
 	Cassia.cesare.decrypt(message);
