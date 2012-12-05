@@ -13,9 +13,19 @@ To import the library, use this code between the head tags on your page:
 Albam Cipher:
 
 	var encrypted = Cassia.albam.encrypt("Message");
-	var encrypted = Cassia.albam.decrypt("Message");
+	var decrypted = Cassia.albam.decrypt("Message");
+
+Alfabeto Carbonaro:
+
+	var encrypted = Cassia.carbonaro.encrypt("Message");
+	var decrypted = Cassia.carbonaro.decrypt("Message");
+
+Atbash:
+
+	var encrypted = Cassia.atbash.encrypt("Message");
+	var decrypted = Cassia.atbash.decrypt("Message");
 
 Cesare Cipher (Caesar Cipher):
 
 	var encrypted = Cassia.cesare.encrypt("Message");
-	var encrypted = Cassia.cesare.decrypt("Message");
+	var decrypted = Cassia.cesare.decrypt("Message");
