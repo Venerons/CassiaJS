@@ -1,6 +1,7 @@
 CassiaJS Changelog
 
-Copyright (c) 2012 Daniele Veneroni. Released under MIT License
+Copyright (c) 2012 Daniele Veneroni. Released under MIT License. 
+http://venerons.github.com/CassiaJS
 
 Update 06/12/2012
 
@@ -10,6 +11,13 @@ Update 06/12/2012
 • Add Leet
 • Add Morse Code
 • Add minified version cassia.min.js
+• Add One-Time Pad
+• Add Pizzini
+• Add Polibio Cipher
+• Add Pollux Cipher
+• Add ROT-13
+• Add T9
+• Add VIC Cipher
 
 Update 05/12/2012
 
