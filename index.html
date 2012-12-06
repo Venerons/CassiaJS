@@ -46,33 +46,67 @@
 
 <p>To import the library, use this code between the head tags on your page:</p>
 
-<pre><code>&lt;script src="cassia.js"&gt;&lt;/script&gt;
+<pre><code>&lt;script src="cassia.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>The library is called by using one of the following methods followed by the cipher name and the methods encrypt/decrypt:</p>
+
+<pre><code>CassiaJS
+cassiaJS
+Cassiajs
+cassiajs
+Cassia
+cassia
 </code></pre>
 
 <h2>API</h2>
 
+<p>Additive Cipher:</p>
+
+<pre><code>var encrypted = CassiaJS.additive.encrypt("Message", shift); // shift must be a number, i.e. shift = 5
+var decrypted = CassiaJS.additive.decrypt("Message", shift);
+</code></pre>
+
 <p>Albam Cipher:</p>
 
-<pre><code>var encrypted = Cassia.albam.encrypt("Message");
-var decrypted = Cassia.albam.decrypt("Message");
+<pre><code>var encrypted = CassiaJS.albam.encrypt("Message");
+var decrypted = CassiaJS.albam.decrypt("Message");
 </code></pre>
 
 <p>Alfabeto Carbonaro:</p>
 
-<pre><code>var encrypted = Cassia.carbonaro.encrypt("Message");
-var decrypted = Cassia.carbonaro.decrypt("Message");
+<pre><code>var encrypted = CassiaJS.carbonaro.encrypt("Message");
+var decrypted = CassiaJS.carbonaro.decrypt("Message");
 </code></pre>
 
 <p>Atbash:</p>
 
-<pre><code>var encrypted = Cassia.atbash.encrypt("Message");
-var decrypted = Cassia.atbash.decrypt("Message");
+<pre><code>var encrypted = CassiaJS.atbash.encrypt("Message");
+var decrypted = CassiaJS.atbash.decrypt("Message");
+</code></pre>
+
+<p>Binary Encode:</p>
+
+<pre><code>var encrypted = CassiaJS.binary.encrypt("Message");
+var decrypted = CassiaJS.binary.decrypt("Message");
 </code></pre>
 
 <p>Cesare Cipher (Caesar Cipher):</p>
 
-<pre><code>var encrypted = Cassia.cesare.encrypt("Message");
-var decrypted = Cassia.cesare.decrypt("Message");
+<pre><code>var encrypted = CassiaJS.cesare.encrypt("Message");
+var decrypted = CassiaJS.cesare.decrypt("Message");
+</code></pre>
+
+<p>Leet (only encrypt):</p>
+
+<pre><code>var baseencrypted = CassiaJS.leet.encrypt("Message", "base");
+var advancedencrypted = CassiaJS.leet.encrypt("Message", "advanced");
+</code></pre>
+
+<p>Morse Code:</p>
+
+<pre><code>var encrypted = CassiaJS.morse.encrypt("Message", separator); // separator must be a character, i.e. separator = " " or separator = "+"
+var decrypted = CassiaJS.morse.decrypt("Message", separator);
 </code></pre>
       </section>
 
