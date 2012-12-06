@@ -38,9 +38,7 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
         </div>
 
-        <h1>CassiaJS</h1>
-
-<p><em>Copyright (c) 2012 Daniele Veneroni. Released under MIT License.</em></p>
+        <p><em>Copyright (c) 2012 Daniele Veneroni. Released under MIT License.</em></p>
 
 <p>CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptopraphic algoritms.</p>
 
@@ -49,21 +47,14 @@
 <pre><code>&lt;script src="cassia.min.js"&gt;&lt;/script&gt;
 </code></pre>
 
-<p>The library is called by using one of the following methods followed by the cipher name and the methods encrypt/decrypt:</p>
-
-<pre><code>CassiaJS
-cassiaJS
-Cassiajs
-cassiajs
-Cassia
-cassia
-</code></pre>
+<p>The library is called by using <code>CassiaJS</code> followed by the cipher name and the methods encrypt/decrypt.</p>
 
 <h2>API</h2>
 
 <p>Additive Cipher:</p>
 
-<pre><code>var encrypted = CassiaJS.additive.encrypt("Message", shift); // shift must be a number, i.e. shift = 5
+<pre><code>// shift must be a number, i.e. shift = 5
+var encrypted = CassiaJS.additive.encrypt("Message", shift); 
 var decrypted = CassiaJS.additive.decrypt("Message", shift);
 </code></pre>
 
@@ -105,8 +96,55 @@ var advancedencrypted = CassiaJS.leet.encrypt("Message", "advanced");
 
 <p>Morse Code:</p>
 
-<pre><code>var encrypted = CassiaJS.morse.encrypt("Message", separator); // separator must be a character, i.e. separator = " " or separator = "+"
+<pre><code>// separator must be a character, i.e. separator = " " or separator = "+"
+var encrypted = CassiaJS.morse.encrypt("Message", separator); 
 var decrypted = CassiaJS.morse.decrypt("Message", separator);
+</code></pre>
+
+<p>One-Time Pad (Vernam Cipher):</p>
+
+<pre><code>var encrypted = CassiaJS.onetimepad.encrypt("Message", "key"); 
+var decrypted = CassiaJS.onetimepad.decrypt("Message", "key");
+</code></pre>
+
+<p>Pizzini:</p>
+
+<pre><code>var encrypted = CassiaJS.pizzini.encrypt("Message"); 
+var decrypted = CassiaJS.pizzini.decrypt("Message");
+</code></pre>
+
+<p>Polibio Cipher:</p>
+
+<pre><code>var encrypted = CassiaJS.polibio.encrypt("Message"); 
+var decrypted = CassiaJS.polibio.decrypt("Message");
+</code></pre>
+
+<p>Pollux Cipher:</p>
+
+<pre><code>// chpoint, chline, chpuls are three string variables that contains the characters for point, line and plus symbols.
+// i.e. chpoint = "ADGJMPSVYcfilorux"
+// i.e. chlint = "BEHKNQTWZadgjmpsvy"
+// i.e. chplus = "CFILORUXbehknqtwz"
+var encrypted = CassiaJS.pollux.encrypt("Message", chpoint, chline, chplus); 
+var decrypted = CassiaJS.pollux.decrypt("Message", chpoint, chline, chplus);
+</code></pre>
+
+<p>ROT-13:</p>
+
+<pre><code>var encrypted = CassiaJS.rot13.encrypt("Message"); 
+var decrypted = CassiaJS.rot13.decrypt("Message");
+</code></pre>
+
+<p>T9 (only encrypt):</p>
+
+<pre><code>var encrypted = CassiaJS.t9.encrypt("Message");
+</code></pre>
+
+<p>VIC Cipher:</p>
+
+<pre><code>// key is a string variable that must containt only numeric characters, i.e. key = "1234567890"
+var encrypted = CassiaJS.vic.encrypt("Message", key); 
+var decrypted = CassiaJS.vic.decrypt("Message", key);
 </code></pre>
       </section>
 
