@@ -6,29 +6,195 @@
 <head>
     <meta charset="UTF-8">
     <title>CassiaJS Example</title>
+    <style>
+        td {
+            border: 1px dotted black;
+            word-wrap: break-word;
+            word-break: normal;
+            white-space: normal;
+        }
+    </style>
     <script src="cassia.min.js"></script>
     <script type="text/javascript">
         var message = "Super-secret Message that must to be secret and readable only by the authorized personnel. Don't read!";
-        document.write("<table style=\"width: 100%;  border:1px dotted black;\"><tbody><tr><td style=\"width: 30%; border:1px dotted black;\"><strong>Original Message:</strong></td><td style=\"border:1px dotted black;\">" + message + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.albam.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.albam.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.carbonaro.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.carbonaro.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.atbash.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.atbash.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.cesare.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.cesare.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.additive.encrypt(message, 5):</td><td style=\"border:1px dotted black;\">" + CassiaJS.additive.encrypt(message, 5) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.binary.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.binary.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.leet.encrypt(message, \"base\"):</td><td style=\"border:1px dotted black;\">" + CassiaJS.leet.encrypt(message, "base") + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.leet.encrypt(message, \"advanced\"):</td><td style=\"border:1px dotted black;\">" + CassiaJS.leet.encrypt(message, "advanced") + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.morse.encrypt(message, \" \"):</td><td style=\"border:1px dotted black;\">" + CassiaJS.morse.encrypt(message, " ") + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.onetimepad.encrypt(message, \"keyword\"):</td><td style=\"border:1px dotted black;\">" + CassiaJS.onetimepad.encrypt(message, "keyword") + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.pizzini.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.pizzini.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.polibio.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.polibio.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.pollux.encrypt(message, \"ADGJMPSVYcfilorux\", \"BEHKNQTWZadgjmpsvy\", \"CFILORUXbehknqtwz\"):</td><td style=\"border:1px dotted black;\">" + CassiaJS.pollux.encrypt(message, "ADGJMPSVYcfilorux", "BEHKNQTWZadgjmpsvy", "CFILORUXbehknqtwz") + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.rot13.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.rot13.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.t9.encrypt(message):</td><td style=\"border:1px dotted black;\">" + CassiaJS.t9.encrypt(message) + "</td></tr>");
-        document.write("<tr><td style=\"width: 30%; border:1px dotted black;\">CassiaJS.vic.encrypt(message, \"1234567890\"):</td><td style=\"border:1px dotted black;\">" + CassiaJS.vic.encrypt(message, "1234567890") + "</td></tr>");
-        document.write("</tbody></table>");
     </script>
 </head>
 <body>
+    <table style="width: 100%;">
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Original Message:</strong>
+                </td>
+                <td>
+                    <strong>
+                        <script type="text/javascript">
+                            window.document.write(message);
+                        </script>
+                    </strong>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>albam</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.albam.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>carbonaro</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.carbonaro.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>atbash</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.atbash.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>cesare</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.cesare.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>additive</strong>.encrypt(message, 5)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.additive.encrypt(message, 5));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>binary</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.binary.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>leet</strong>.encrypt(message, "base")
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.leet.encrypt(message, "base"));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>leet</strong>.encrypt(message, "advanced")
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.leet.encrypt(message, "advanced"));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>morse</strong>.encrypt(message, " ")
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.morse.encrypt(message, " "));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>onetimepad</strong>.encrypt(message, "keyword")
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.onetimepad.encrypt(message, "keyword"));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>pizzini</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.pizzini.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>polibio</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.polibio.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>pollux</strong>.encrypt(message, "ADGJMPSVYcfilorux", "BEHKNQTWZadgjmpsvy", "CFILORUXbehknqtwz")
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.pollux.encrypt(message, "ADGJMPSVYcfilorux", "BEHKNQTWZadgjmpsvy", "CFILORUXbehknqtwz"));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>rot13</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.rot13.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>t9</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.t9.encrypt(message));
+                    </script>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    CassiaJS.<strong>vic</strong>.encrypt(message)
+                </td>
+                <td>
+                    <script type="text/javascript">
+                        window.document.write(CassiaJS.vic.encrypt(message, "1234567890"));
+                    </script>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>

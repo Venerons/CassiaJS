@@ -1,151 +1,188 @@
 // Copyright (c) 2012 Daniele Veneroni. Released under MIT License. 
 // http://venerons.github.com/CassiaJS
 
+// Log function
+function log(type, message) {
+    if ((typeof console != "undefined") && (window.console.log)) {
+        if (type === "log") console.log(message);
+        if (type === "info") console.info(message);
+        if (type === "warn") console.warn(message);
+        if (type === "debug") console.debug(message);
+        if (type === "error") console.error(message);
+    } else {
+        window.alert(type + " " + message);
+    }
+}
+
 // Albam Cipher
 var albam = {
-    encrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        beta = "LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
+    beta: new String("LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890"),
+    encrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "albam encrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "albam encrypt output: " + ris);
         return ris;
     },
-    decrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        beta = "LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    decrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "albam decrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = beta.indexOf(c);
-                ris += alfa.charAt(ord);
+                ord = this.beta.indexOf(c);
+                ris += this.alfa.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "albam decrypt output: " + ris);
         return ris;
     }
 };
 
 // Alfabeto Carbonaro
 var carbonaro = {
-    encrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        beta = "OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
+    beta: new String("OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys"),
+    encrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "carbonaro encrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "carbonaro encrypt output: " + ris);
         return ris;
     },
-    decrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        beta = "OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    decrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "carbonaro decrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "carbonaro decrypt output: " + ris);
         return ris;
     }
 };
 
 // Atbash Cipher
 var atbash = {
-    encrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        beta = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
+    beta: new String("ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210"),
+    encrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "atbash encrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "atbash encrypt output: " + ris);
         return ris;
     },
-    decrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        beta = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    decrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "atbash decrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "atbash decrypt output: " + ris);
         return ris;
     }
 };
 
 // Caesar Cipher
 var cesare = {
-    encrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        beta = "DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
+    beta: new String("DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012"),
+    encrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "caesar encrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "caesar encrypt output: " + ris);
         return ris;
     },
-    decrypt: function(messaggio) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        beta = "DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012";
-        ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+    decrypt: function(message) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "caesar decrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = beta.indexOf(c);
-                ris += alfa.charAt(ord);
+                ord = this.beta.indexOf(c);
+                ris += this.alfa.charAt(ord);
             } else {
                 ris += c;
             }
         }
+        //log("debug", "caesar decrypt output: " + ris);
         return ris;
     }
 };
 
 // Additive Cipher
 var additive = {
-    encrypt: function(messaggio, scostamento) {
+    encrypt: function(message, scostamento) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         ris = "";
-        lunghezza = messaggio.length;
+        lunghezza = message.length;
         shift = parseInt(scostamento); 
         for (i = 0; i < lunghezza; i++) {
-            c = messaggio.charAt(i);
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
                 ris += alfa.charAt((ord + shift) % 52);
@@ -155,13 +192,13 @@ var additive = {
         }
         return ris;
     },
-    decrypt: function(messaggio, scostamento) {
+    decrypt: function(message, scostamento) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         ris = "";
-        lunghezza = messaggio.length;
+        lunghezza = message.length;
         shift = parseInt(scostamento); 
         for (i = 0; i < lunghezza; i++) {
-            c = messaggio.charAt(i);
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
                 r = ord - shift;
@@ -177,12 +214,12 @@ var additive = {
 
 // Binary Encode
 var binary = {
-    encrypt: function(messaggio) {
+    encrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
                 ris += beta[ord];
@@ -192,12 +229,12 @@ var binary = {
         }
         return ris;
     },
-    decrypt: function(messaggio) {
+    decrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
         ris = "";
-        for (i = 0; i < messaggio.length-5; i++) {
-            c = "" + messaggio.substring(i, i+6);
+        for (i = 0; i < message.length-5; i++) {
+            c = "" + message.substring(i, i+6);
             trovato = false;
             j = 0;
             while ((j < 52) && (!trovato)) {
@@ -213,8 +250,8 @@ var binary = {
 
 // Leet
 var leet = {
-    encrypt: function(messaggio, version) {
-        testo = messaggio.toUpperCase();
+    encrypt: function(message, version) {
+        testo = message.toUpperCase();
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var beta;
         base = ["4","8","(","|)","3","F","G","H","1","J","K","L","M","N","0","P","Q","Я","5","7","U","V","W","><","Ұ","2"];
@@ -239,7 +276,7 @@ var leet = {
 
 // Morse Code
 var morse = {
-    encrypt: function(messaggio, separator) {
+    encrypt: function(message, separator) {
         Morse = new Array();
         Morse['A'] = '•—';
         Morse['À'] = '•—';
@@ -297,17 +334,17 @@ var morse = {
         Morse['!'] = '•—••—'; // equivalente di "EX"
         Morse[' '] = '••——•—'; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['@'] = '•——•—•';
-        messaggio = messaggio.toUpperCase();
+        message = message.toUpperCase();
         morse = "";
-        for(conta = 0; conta < messaggio.length; conta++){
-            ch  = messaggio.charAt(conta);
+        for(conta = 0; conta < message.length; conta++){
+            ch  = message.charAt(conta);
             morse += Morse[ch];
             morse += separator;
         }
         ris = morse;
         return ris;
     },
-    decrypt: function(messaggio, separator) {
+    decrypt: function(message, separator) {
         Morse = new Array();
         Morse['•—'] = 'A';
         Morse['—•••'] = 'B';
@@ -362,8 +399,8 @@ var morse = {
 
         ris = "";
         sequenza = "";
-        for(conta = 0; conta < messaggio.length; conta++){
-            ch = messaggio.charAt(conta);
+        for(conta = 0; conta < message.length; conta++){
+            ch = message.charAt(conta);
             if (ch == separator) {
                 ris += Morse[sequenza];
                 // risultato.value += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
@@ -378,10 +415,10 @@ var morse = {
 
 // One-Time Pad (Vernam Cipher)
 var onetimepad = {
-    encrypt: function(messaggio, chiave) {
+    encrypt: function(message, chiave) {
         key = chiave;
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
+        for (i = 0; i < message.length; i++) {
             m = testo.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
             c = m + k;
@@ -389,9 +426,9 @@ var onetimepad = {
         }
         return ris;
     },
-    decrypt: function(messaggio, chiave) {
+    decrypt: function(message, chiave) {
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
+        for (i = 0; i < message.length; i++) {
             m = testo.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
             c = m-k;
@@ -403,13 +440,13 @@ var onetimepad = {
 
 // Pizzi
 var pizzini = {
-    encrypt: function(messaggio) {
-        messaggio = messaggio.toUpperCase();
+    encrypt: function(message) {
+        message = message.toUpperCase();
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ["4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"];
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
                 ris += beta[ord];
@@ -419,24 +456,24 @@ var pizzini = {
         }
         return ris;
     },
-    decrypt: function(messaggio) {
-        messaggio += "*";
+    decrypt: function(message) {
+        message += "*";
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ['4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'];
         ris = "";
-        for (i = 0; i < messaggio.length-1; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length-1; i++) {
+            c = message.charAt(i);
             trovato = false;
             j = 0;
             if (c == '1') { 
                 j = 6;
                 i++;
-                c = messaggio.charAt(i);
+                c = message.charAt(i);
             } else 
                 if (c == '2') {
                     j = 16;
                     i++;
-                    c = messaggio.charAt(i);
+                    c = message.charAt(i);
                 }
             while ((j < 26) && (!trovato)) {
                 if (c == beta[j]) {
@@ -455,13 +492,13 @@ var pizzini = {
 
 // Polibio
 var polibio = {
-    encrypt: function(messaggio) {
-        messaggio = messaggio.toUpperCase();
+    encrypt: function(message) {
+        message = message.toUpperCase();
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"];
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
                 ris += beta[ord];
@@ -471,14 +508,14 @@ var polibio = {
         }
         return ris;
     },
-    decrypt: function(messaggio) {
-        messaggio = messaggio + " ";
+    decrypt: function(message) {
+        message = message + " ";
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"];
         ris = "";
-        for (i = 0; i < messaggio.length-5; i++) {
-            c = "" + messaggio.charAt(i);
-            d = "" + messaggio.charAt(i+1);
+        for (i = 0; i < message.length-5; i++) {
+            c = "" + message.charAt(i);
+            d = "" + message.charAt(i+1);
             num = c + d;
             trovato = false;
             j = 0;
@@ -501,7 +538,7 @@ var polibio = {
 
 // Pollux
 var pollux = {
-    encrypt: function(messaggio, cpunto, clinea, cplus) {
+    encrypt: function(message, cpunto, clinea, cplus) {
         Morse = new Array();
         Morse['A'] = '•—';
         Morse['À'] = '•—';
@@ -559,10 +596,10 @@ var pollux = {
         Morse['!'] = '•—••—'; // equivalente di "EX"
         Morse[' '] = '••——•—'; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['@'] = '•——•—•';
-        messaggio = messaggio.toUpperCase();
+        message = message.toUpperCase();
         morse = "";
-        for(conta = 0; conta < messaggio.length; conta++){
-            ch  = messaggio.charAt(conta);
+        for(conta = 0; conta < message.length; conta++){
+            ch  = message.charAt(conta);
             morse += Morse[ch]+'+';
         }
         ris = "";
@@ -577,7 +614,7 @@ var pollux = {
         }
         return ris;
     },
-    decrypt: function(messaggio, cpunto, clinea, cplus) {
+    decrypt: function(message, cpunto, clinea, cplus) {
         Morse = new Array();
         Morse['•—'] = 'A';
         Morse['—•••'] = 'B';
@@ -633,8 +670,8 @@ var pollux = {
         morse = "";
         ris = "";
         
-        for(conta = 0; conta < messaggio.length; conta++){
-            ch  = messaggio.charAt(conta);
+        for(conta = 0; conta < message.length; conta++){
+            ch  = message.charAt(conta);
             if (cpunto.indexOf(ch) >= 0) morse += '•';
             if (clinea.indexOf(ch) >= 0) morse += '—';
             if (cplus.indexOf(ch) >= 0) morse += '+';
@@ -657,12 +694,12 @@ var pollux = {
 
 // ROT-13
 var rot13 = {
-    encrypt: function(messaggio) {
+    encrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
                 ris += beta.charAt(ord);
@@ -672,12 +709,12 @@ var rot13 = {
         }
         return ris;
     },
-    decrypt: function(messaggio) {
+    decrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
                 ris += beta.charAt(ord);
@@ -691,12 +728,12 @@ var rot13 = {
 
 // T9
 var t9 = {
-    encrypt: function(messaggio) {
+    encrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù";
         beta = "222333444555666777788899992223334445556667777888999933268";
         ris = "";
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
                 ris += beta.charAt(ord);
@@ -710,15 +747,15 @@ var t9 = {
 
 // VIC Cipher
 var vic = {
-    encrypt: function(messaggio, key) {
-        messaggio = messaggio.toUpperCase();
+    encrypt: function(message, key) {
+        message = message.toUpperCase();
         alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.";
         beta = ["0","1","3","4","5","7","8","9","20","21","22","23","24","25","26","27","28","29","60","61","62","63","64","65","66","67","68","69"];
         risultato = "";
         ris = "";
         // codifica da lettere a numeri
-        for (i = 0; i < messaggio.length; i++) {
-            c = messaggio.charAt(i);
+        for (i = 0; i < message.length; i++) {
+            c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || c == '/' || c == '.'){
                 ord = alfa.indexOf(c);
                 ris += beta[ord];
@@ -741,8 +778,8 @@ var vic = {
         }
         return risultato;
     },
-    decrypt: function(messaggio, key) {
-        originale = messaggio + "*";
+    decrypt: function(message, key) {
+        originale = message + "*";
         testo = "";
         alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.";
         beta = ["0","1","3","4","5","7","8","9","0","1","2","3","4","5","6","7","8","9","0","1","2","3","4","5","6","7","8","9"];
