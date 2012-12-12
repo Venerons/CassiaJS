@@ -3,6 +3,10 @@ CassiaJS Changelog
 Copyright (c) 2012 Daniele Veneroni. Released under MIT License. 
 http://venerons.github.com/CassiaJS
 
+Update 12/12/2012
+
+• Performance Enhancements
+
 Update 08/12/2012
 
 • Performance Enhancements

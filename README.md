@@ -2,7 +2,7 @@
 
 _Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
 
-CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptopraphic algoritms.
+CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptographic algoritms.
 
 To import the library, use this code between the head tags on your page:
 

@@ -176,16 +176,17 @@ var cesare = {
 
 // Additive Cipher
 var additive = {
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     encrypt: function(message, scostamento) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        ris = "";
-        lunghezza = message.length;
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
         shift = parseInt(scostamento); 
-        for (i = 0; i < lunghezza; i++) {
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
-                ris += alfa.charAt((ord + shift) % 52);
+                ord = this.alfa.indexOf(c);
+                ris += this.alfa.charAt((ord + shift) % 52);
             } else {
                 ris += c;
             }
@@ -193,11 +194,11 @@ var additive = {
         return ris;
     },
     decrypt: function(message, scostamento) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        ris = "";
-        lunghezza = message.length;
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
         shift = parseInt(scostamento); 
-        for (i = 0; i < lunghezza; i++) {
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
@@ -217,8 +218,10 @@ var binary = {
     encrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
@@ -232,8 +235,10 @@ var binary = {
     decrypt: function(message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
-        ris = "";
-        for (i = 0; i < message.length-5; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len - 5; i++) {
             c = "" + message.substring(i, i+6);
             trovato = false;
             j = 0;
@@ -242,7 +247,7 @@ var binary = {
                 if (c == cod) { ris += alfa.charAt(j); trovato = true; }
                 j++;
             }
-            if (!trovato) { ris += c.charAt(0); } else { i+=5; }
+            if (!trovato) { ris += c.charAt(0); } else { i += 5; }
         }
         return ris;
     }
@@ -260,8 +265,10 @@ var leet = {
             beta = base;
         else
             beta = avanzato;
-        ris = "";
-        for (i = 0; i < testo.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = testo.length;
+        for (i = 0; i < len; i++) {
             c = testo.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
@@ -335,8 +342,10 @@ var morse = {
         Morse[' '] = '••——•—'; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['@'] = '•——•—•';
         message = message.toUpperCase();
-        morse = "";
-        for(conta = 0; conta < message.length; conta++){
+        var morse = "";
+        var ris = "";
+        var len = message.length;
+        for(conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
             morse += Morse[ch];
             morse += separator;
@@ -397,13 +406,14 @@ var morse = {
         Morse['••——•—'] = ' '; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['•——•—•'] = '@';
 
-        ris = "";
+        var ris = "";
+        var len = message.length;
         sequenza = "";
-        for(conta = 0; conta < message.length; conta++){
+        for(conta = 0; conta < len; conta++){
             ch = message.charAt(conta);
             if (ch == separator) {
                 ris += Morse[sequenza];
-                // risultato.value += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
+                // ris += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
                 sequenza = "";
             } else {
                 sequenza += ch;
@@ -416,9 +426,10 @@ var morse = {
 // One-Time Pad (Vernam Cipher)
 var onetimepad = {
     encrypt: function(message, chiave) {
-        key = chiave;
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var key = chiave;
+        var ris = "";
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             m = testo.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
             c = m + k;
@@ -427,8 +438,9 @@ var onetimepad = {
         return ris;
     },
     decrypt: function(message, chiave) {
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             m = testo.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
             c = m-k;
@@ -438,14 +450,16 @@ var onetimepad = {
     }
 };
 
-// Pizzi
+// Pizzini
 var pizzini = {
     encrypt: function(message) {
         message = message.toUpperCase();
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ["4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"];
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
@@ -460,8 +474,10 @@ var pizzini = {
         message += "*";
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ['4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'];
-        ris = "";
-        for (i = 0; i < message.length-1; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len - 1; i++) {
             c = message.charAt(i);
             trovato = false;
             j = 0;
@@ -496,8 +512,10 @@ var polibio = {
         message = message.toUpperCase();
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"];
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
@@ -512,8 +530,10 @@ var polibio = {
         message = message + " ";
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"];
-        ris = "";
-        for (i = 0; i < message.length-5; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len - 5; i++) {
             c = "" + message.charAt(i);
             d = "" + message.charAt(i+1);
             num = c + d;
@@ -598,18 +618,20 @@ var pollux = {
         Morse['@'] = '•——•—•';
         message = message.toUpperCase();
         morse = "";
-        for(conta = 0; conta < message.length; conta++){
+        var ris = "";
+        var len = message.length;
+        for(conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
             morse += Morse[ch]+'+';
         }
-        ris = "";
         Cifrante = new Array();
         Cifrante['•'] = cpunto;
         Cifrante['—'] = clinea;
         Cifrante['+'] = cplus; 
-        for(conta = 0; conta < morse.length; conta++){
+        len = morse.length;
+        for(conta = 0; conta < len; conta++){
             ch  = morse.charAt(conta);
-            sposta = Cifrante[ch].length*Math.random();
+            sposta = Cifrante[ch].length * Math.random();
             ris += Cifrante[ch].charAt(sposta);
         }
         return ris;
@@ -668,21 +690,23 @@ var pollux = {
         Morse['•——•—•'] = '@';
         
         morse = "";
-        ris = "";
+        var ris = "";
+        var len = message.length;
         
-        for(conta = 0; conta < message.length; conta++){
+        for(conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
             if (cpunto.indexOf(ch) >= 0) morse += '•';
             if (clinea.indexOf(ch) >= 0) morse += '—';
             if (cplus.indexOf(ch) >= 0) morse += '+';
         }
         
-        sequenza = "";
-        for(conta = 0; conta < morse.length; conta++){
+        var sequenza = "";
+        len = morse.length;
+        for(conta = 0; conta < len; conta++){
             ch = morse.charAt(conta);
             if (ch == '+') {
                 ris += Morse[sequenza];
-                // risultato.value += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
+                // ris += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
                 sequenza = "";
             } else {
                 sequenza += ch;
@@ -694,15 +718,17 @@ var pollux = {
 
 // ROT-13
 var rot13 = {
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
+    beta: new String("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
     encrypt: function(message) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        beta = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
@@ -710,14 +736,14 @@ var rot13 = {
         return ris;
     },
     decrypt: function(message) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        beta = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
@@ -728,15 +754,17 @@ var rot13 = {
 
 // T9
 var t9 = {
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù"),
+    beta: new String("222333444555666777788899992223334445556667777888999933268"),
     encrypt: function(message) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù";
-        beta = "222333444555666777788899992223334445556667777888999933268";
-        ris = "";
-        for (i = 0; i < message.length; i++) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
-                ris += beta.charAt(ord);
+                ord = this.alfa.indexOf(c);
+                ris += this.beta.charAt(ord);
             } else {
                 ris += c;
             }
@@ -751,10 +779,11 @@ var vic = {
         message = message.toUpperCase();
         alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.";
         beta = ["0","1","3","4","5","7","8","9","20","21","22","23","24","25","26","27","28","29","60","61","62","63","64","65","66","67","68","69"];
-        risultato = "";
-        ris = "";
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
         // codifica da lettere a numeri
-        for (i = 0; i < message.length; i++) {
+        for (i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || c == '/' || c == '.'){
                 ord = alfa.indexOf(c);
@@ -764,7 +793,9 @@ var vic = {
             }
         }
         // modifica dei numeri in base alla chiave
-        for (i = 0; i < ris.length; i++) {
+        len = ris.length;
+        var risultato = "";
+        for (i = 0; i < len; i++) {
             c = ris.charAt(i);
             if (c >= '0' && c <= '9'){
                 a = parseInt(c);
@@ -785,7 +816,8 @@ var vic = {
         beta = ["0","1","3","4","5","7","8","9","0","1","2","3","4","5","6","7","8","9","0","1","2","3","4","5","6","7","8","9"];
         risultato = "";
         // modifica dei numeri in base alla chiave
-        for (i = 0; i < originale.length; i++) {
+        var len = originale.length;
+        for (i = 0; i < len; i++) {
             c = originale.charAt(i);
             if (c >= '0' && c <= '9'){
                 a = parseInt(c);
@@ -798,7 +830,8 @@ var vic = {
             }
          }
         // codifica da numeri a lettere
-        for (i = 0; i < testo.length-1; i++) {
+        len = testo.length;
+        for (i = 0; i < len - 1; i++) {
             c = testo.charAt(i);
             trovato = false;
             j = 0;
