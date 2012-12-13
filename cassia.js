@@ -14,43 +14,57 @@ function log(type, message) {
     }
 }
 
+// Generic Substitution Cipher
+var substitution = {
+    encrypt: function(message, alfa, beta) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "substitution encrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
+            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+                ord = alfa.indexOf(c);
+                ris += beta.charAt(ord);
+            } else {
+                ris += c;
+            }
+        }
+        //log("debug", "substitution encrypt output: " + ris);
+        return ris;
+    },
+    decrypt: function(message, alfa, beta) {
+        var ris = "";
+        var ord = 0;
+        var len = message.length;
+        //log("debug", "substitution decrypt input: " + message);
+        for (i = 0; i < len; i++) {
+            c = message.charAt(i);
+            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
+                ord = beta.indexOf(c);
+                ris += alfa.charAt(ord);
+            } else {
+                ris += c;
+            }
+        }
+        //log("debug", "substitution decrypt output: " + ris);
+        return ris;
+    }
+};
+
 // Albam Cipher
 var albam = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890"),
     encrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "albam encrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "albam encrypt output: " + ris);
-        return ris;
     },
     decrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "albam decrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = this.beta.indexOf(c);
-                ris += this.alfa.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "albam decrypt output: " + ris);
-        return ris;
     }
 };
 
@@ -59,38 +73,14 @@ var carbonaro = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     beta: new String("OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys"),
     encrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "carbonaro encrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "carbonaro encrypt output: " + ris);
-        return ris;
     },
     decrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "carbonaro decrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "carbonaro decrypt output: " + ris);
-        return ris;
     }
 };
 
@@ -99,38 +89,14 @@ var atbash = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210"),
     encrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "atbash encrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "atbash encrypt output: " + ris);
-        return ris;
     },
     decrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "atbash decrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "atbash decrypt output: " + ris);
-        return ris;
     }
 };
 
@@ -139,38 +105,41 @@ var cesare = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012"),
     encrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "caesar encrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "caesar encrypt output: " + ris);
-        return ris;
     },
     decrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
         //log("debug", "caesar decrypt input: " + message);
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = this.beta.indexOf(c);
-                ris += this.alfa.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
+        return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "caesar decrypt output: " + ris);
-        return ris;
+    }
+};
+
+// ROT-13
+var rot13 = {
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
+    beta: new String("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
+    encrypt: function(message) {
+        //log("debug", "ROT-13 encrypt input: " + message);
+        return substitution.encrypt(message, this.alfa, this.beta);
+        //log("debug", "ROT-13 encrypt output: " + ris);
+    },
+    decrypt: function(message) {
+        //log("debug", "ROT-13 decrypt input: " + message);
+        return substitution.decrypt(message, this.alfa, this.beta);
+        //log("debug", "ROT-13 decrypt output: " + ris);
+    }
+};
+
+// T9
+var t9 = {
+    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù"),
+    beta: new String("222333444555666777788899992223334445556667777888999933268"),
+    encrypt: function(message) {
+        //log("debug", "T9 encrypt input: " + message);
+        return substitution.encrypt(message, this.alfa, this.beta);
+        //log("debug", "T9 encrypt output: " + ris);
     }
 };
 
@@ -716,63 +685,6 @@ var pollux = {
     }
 };
 
-// ROT-13
-var rot13 = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
-    beta: new String("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
-    encrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
-        return ris;
-    },
-    decrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
-        return ris;
-    }
-};
-
-// T9
-var t9 = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù"),
-    beta: new String("222333444555666777788899992223334445556667777888999933268"),
-    encrypt: function(message) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len; i++) {
-            c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = this.alfa.indexOf(c);
-                ris += this.beta.charAt(ord);
-            } else {
-                ris += c;
-            }
-        }
-        return ris;
-    }
-};
-
 // VIC Cipher
 var vic = {
     encrypt: function(message, key) {
@@ -871,6 +783,7 @@ function Ciphers() {
     this.rot13 = rot13;
     this.t9 = t9;
     this.vic = vic;
+    this.substitution = substitution;
 }
 
 var Cassia = cassia = CassiaJS = cassiaJS = Cassiajs = cassiajs = new Ciphers();
