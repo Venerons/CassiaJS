@@ -3,6 +3,13 @@
 _Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
 _http://venerons.github.com/CassiaJS_
 
+### Update 19/12/2012
+
+* Add Random Break
+* Add Transposition Cipher
+* Update README.md
+* Update example.html
+
 ### Update 13/12/2012
 
 * Add Generic Substitution Cipher

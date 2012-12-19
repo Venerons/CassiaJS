@@ -106,3 +106,19 @@ Morse Code:
 	// separator must be a character, i.e. separator = " " or separator = "+"
 	var encrypted = CassiaJS.morse.encrypt("Message", separator); 
 	var decrypted = CassiaJS.morse.decrypt("Message", separator);
+
+### Steganography
+
+Random Break:
+	
+	// reversing is a boolean value, if set to true, the message will be reverted, otherwise it will not be reverted
+	var encryptedWithReversing = CassiaJS.randombreak.encrypt("Message", true); 
+	var decryptedFromReversing = CassiaJS.randombreak.decrypt("Message", true);
+	var encryptedWithoutReversing = CassiaJS.randombreak.encrypt("Message", false); 
+	var decryptedWithoutReversing = CassiaJS.randombreak.decrypt("Message", false);
+
+Transposition Cipher:
+	
+	// cols is the number of columns. Must be > 1 and < text length. 
+	var encrypted = CassiaJS.transposition.encrypt("Message", cols); 
+	var decrypted = CassiaJS.transposition.decrypt("Message", cols);

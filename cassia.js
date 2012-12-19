@@ -767,6 +767,101 @@ var vic = {
     }
 };
 
+// RANDOM BREAK
+var randombreak = {
+    encrypt: function(message, reversing) {
+        //log("debug", "randombreak encrypt input: " + message);
+        tmp = "";
+        message = message.replace(/ /g, "");
+        len = message.length;
+        for (i = 0; i < len; i++) {
+            j = Math.floor(Math.random() * 6 + 2);
+            if (len < i + j) {
+                j = len - i;
+            }
+            tmp = tmp + message.substring(i, i + j) + " ";
+            i += j - 1;
+        }
+        ris = "";
+        if (reversing) {
+            len = tmp.length;
+            for (i = 0; i < len; i++) {
+                ris = tmp.charAt(i) + ris;
+            }
+        } else {
+            ris = tmp;
+        }
+        return ris;
+        //log("debug", "randombreak encrypt output: " + ris);
+    },
+    decrypt: function(message, reversing) {
+        //log("debug", "randombreak decrypt input: " + message);
+        ris = message.replace(/ /g, "");
+        if (reversing) {
+            len = ris.length;
+            tmp = "";
+            for (i = 0; i < len; i++) {
+                tmp = ris.charAt(i) + tmp;
+            }
+            ris = tmp;
+        }
+        return ris;
+        //log("debug", "randombreak decrypt output: " + ris);
+    }
+};
+
+// TRANSPOSITION CIPHER
+var transposition = {
+    encrypt: function(message, cols) {
+        //log("debug", "transposition encrypt input: " + message);
+        if (cols < 2) {
+            log("error", "cols parameter cannot be < 2. Your input: " + cols);
+            return;
+        }
+        if (cols > message.length) {
+            log("error", "cols parameter cannot be higher than message length. Your input: " + cols);
+            return;
+        }
+        // riempimento del testo con caratteri nulli
+        resto = message.length % cols;
+        resto = (cols - resto) % cols;
+        for (i = 0; i < resto; i++){
+            message += 'x';
+        }
+        // trasposizione
+        ris = "";
+        righe = message.length / cols;
+        for (colonna = 0; colonna < cols; colonna++) {
+            for (conta = 0; conta < righe; conta++) {
+                ris += message.charAt(colonna + (cols * conta));
+            }
+        }
+        return ris;
+        //log("debug", "transposition encrypt output: " + ris);
+    },
+    decrypt: function(message, cols) {
+        //log("debug", "transposition decrypt input: " + message);
+        if (cols < 2) {
+            log("error", "cols parameter cannot be < 2. Your input: " + cols);
+            return;
+        }
+        if (cols > message.length) {
+            log("error", "cols parameter cannot be higher than message length. Your input: " + cols);
+            return;
+        }
+        // de-trasposizione
+        ris = "";
+        righe = message.length / cols;
+        for (conta = 0; conta < righe; conta++) {
+            for (colonna = 0; colonna < cols; colonna++) {
+                ris += message.charAt(conta + (righe * colonna));
+            }
+        }
+        return ris;
+        //log("debug", "transposition decrypt output: " + ris);
+    }
+};
+
 function Ciphers() {
     this.albam = albam;
     this.carbonaro = carbonaro;
@@ -784,6 +879,8 @@ function Ciphers() {
     this.t9 = t9;
     this.vic = vic;
     this.substitution = substitution;
+    this.randombreak = randombreak;
+    this.transposition = transposition;
 }
 
 var Cassia = cassia = CassiaJS = cassiaJS = Cassiajs = cassiajs = new Ciphers();
