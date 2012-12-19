@@ -161,6 +161,24 @@ var advancedencrypted = CassiaJS.leet.encrypt("Message", "advanced");
 var encrypted = CassiaJS.morse.encrypt("Message", separator); 
 var decrypted = CassiaJS.morse.decrypt("Message", separator);
 </code></pre>
+
+<h3>Steganography</h3>
+
+<p>Random Break:</p>
+
+<pre><code>// reversing is a boolean value, if set to true, the message will be reverted, otherwise it will not be reverted
+var encryptedWithReversing = CassiaJS.randombreak.encrypt("Message", true); 
+var decryptedFromReversing = CassiaJS.randombreak.decrypt("Message", true);
+var encryptedWithoutReversing = CassiaJS.randombreak.encrypt("Message", false); 
+var decryptedWithoutReversing = CassiaJS.randombreak.decrypt("Message", false);
+</code></pre>
+
+<p>Transposition Cipher:</p>
+
+<pre><code>// cols is the number of columns. Must be &gt; 1 and &lt; text length. 
+var encrypted = CassiaJS.transposition.encrypt("Message", cols); 
+var decrypted = CassiaJS.transposition.decrypt("Message", cols);
+</code></pre>
       </section>
 
     </div>
