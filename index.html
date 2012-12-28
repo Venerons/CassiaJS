@@ -179,6 +179,29 @@ var decryptedWithoutReversing = CassiaJS.randombreak.decrypt("Message", false);
 var encrypted = CassiaJS.transposition.encrypt("Message", cols); 
 var decrypted = CassiaJS.transposition.decrypt("Message", cols);
 </code></pre>
+
+<h3>Key Generation</h3>
+
+<p>Reading Key:</p>
+
+<pre><code>var key = CassiaJS.reading.generate(level);
+</code></pre>
+
+<p>Fibonacci:</p>
+
+<pre><code>var key = CassiaJS.fibonacci.generate(level, separator);
+</code></pre>
+
+<p>Serie 3n+1</p>
+
+<pre><code>var key = CassiaJS.serie3n1.generate(input, separator);
+</code></pre>
+
+<p>Random Key</p>
+
+<pre><code>// charset is a string containing the chars that can be used to generate the key
+var key = CassiaJS.randomkey.generate(length, charset);
+</code></pre>
       </section>
 
     </div>
