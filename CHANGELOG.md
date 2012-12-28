@@ -3,6 +3,13 @@
 _Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
 _http://venerons.github.com/CassiaJS_
 
+### Update 28/12/2012
+
+* Add Reading Key
+* Add Fibonacci Key
+* Add Serie 3n+1
+* Add Random Key
+
 ### Update 19/12/2012
 
 * Add Random Break

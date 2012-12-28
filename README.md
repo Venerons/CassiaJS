@@ -122,3 +122,22 @@ Transposition Cipher:
 	// cols is the number of columns. Must be > 1 and < text length. 
 	var encrypted = CassiaJS.transposition.encrypt("Message", cols); 
 	var decrypted = CassiaJS.transposition.decrypt("Message", cols);
+
+### Key Generation
+
+Reading Key:
+	
+	var key = CassiaJS.reading.generate(level);
+
+Fibonacci:
+	
+	var key = CassiaJS.fibonacci.generate(level, separator);
+
+Serie 3n+1
+	
+	var key = CassiaJS.serie3n1.generate(input, separator);
+
+Random Key
+
+	// charset is a string containing the chars that can be used to generate the key
+	var key = CassiaJS.randomkey.generate(length, charset);

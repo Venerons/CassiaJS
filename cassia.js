@@ -862,6 +862,129 @@ var transposition = {
     }
 };
 
+// READING KEY
+var reading = {
+    generate: function(level) {
+        if (level == "") {
+            log("error", "Insert a level to generate a key");
+            return;
+        }
+        for (i = 0; i < level.length; i++) {
+            if ((level.charAt(i) < "0") || (level.charAt(i) > "9")) {
+                log("error", "Level is not valid, insert a positive integer number < 30.");
+                return;
+            }
+        }
+        ris = "1 \b";
+        tmp = "";
+        num = parseInt(level);
+        if ((num <= 30) && (num >= 0)) {
+            for (i = 0; i < num; i++) {
+                len = ris.length - 2;
+                for (j = 0; j < len; j++) {
+                    if (ris.charAt(j) == ris.charAt(j + 1)) {
+                        if (ris.charAt(j + 1) == ris.charAt(j + 2)) {
+                            tmp += "3" + ris.charAt(j);
+                            j += 2;
+                        } else {
+                            tmp += "2" + ris.charAt(j);
+                            j++;
+                        }
+                    } else {
+                        tmp += "1" + ris.charAt(j);
+                    }
+                }
+                ris = tmp + " \b";
+                tmp = "";
+            }
+            return ris;
+        } else {
+            log("error", "Level is not valid, insert a positive integer number < 30.");
+        }
+    }
+};
+
+// FIBONACCI
+var fibonacci = {
+    generate: function(level, separator) {
+        if (level == "") {
+            log("error", "Insert a level to generate a key");
+            return;
+        }
+        for (i = 0; i < level.length; i++) {
+            if ((level.charAt(i) < "0") || (level.charAt(i) > "9")) {
+                log("error", "Level is not valid, insert a positive integer number < 91.");
+                return;
+            }
+        }
+        ris = "0" + separator + "1";
+        n1 = 0;
+        n2 = 1;
+        var t;
+        num = parseInt(level);
+        if ((num <= 91) && (num > 0)) {
+            for (i = 0; i < num; i++) {
+                t = n2;
+                n2 += n1;
+                n1 = t;
+                ris += separator + n2
+            }
+            return ris;
+        } else {
+            log("error", "Level is not valid, insert a positive integer number < 91.");
+        }
+    }
+};
+
+// 3n+1 SERIE
+var serie3n1 = {
+    generate: function(input, separator) {
+        if (input == "") {
+            log("error", "Insert a number to generate a key");
+            return;
+        }
+        for (i = 0; i < input.length; i++) {
+            if ((input.charAt(i) < "0") || (input.charAt(i) > "9")) {
+                log("error", "The specified input is not valid, insert a positive integer");
+                return;
+            }
+        }
+        if (parseInt(input) < 1) {
+            log("error", "The specified input is not valid, insert a positive integer");
+            return;
+        }
+        ris = ""; 
+        num = parseInt(input);
+        while (num != 1) {
+            if ((num % 2) == 0) {
+                num = num / 2;
+                ris += String(num);
+            } else {
+                num = (num * 3) + 1;
+                ris += String(num);
+            }
+            ris += separator;
+        }
+        return ris;
+    }
+};
+
+// RANDOM KEY
+var randomkey = {
+    generate: function(length, charset) {
+        if (charset == "") {
+            log("error", "Insert a charset to generate a key");
+            return;
+        }
+        ris = "";
+        l = charset.length;
+        for (i = 0; i < length; i++) {
+            ris += charset.charAt(Math.floor(Math.random() * l));
+        }
+        return ris;
+    }
+};
+
 function Ciphers() {
     this.albam = albam;
     this.carbonaro = carbonaro;
@@ -881,6 +1004,10 @@ function Ciphers() {
     this.substitution = substitution;
     this.randombreak = randombreak;
     this.transposition = transposition;
+    this.reading = reading;
+    this.fibonacci = fibonacci;
+    this.serie3n1 = serie3n1;
+    this.randomkey = randomkey;
 }
 
 var Cassia = cassia = CassiaJS = cassiaJS = Cassiajs = cassiajs = new Ciphers();
