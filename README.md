@@ -91,6 +91,11 @@ VIC Cipher:
 
 ### Not really ciphers
 
+Base64 Encode:
+
+	var encrypted = CassiaJS.base64.encrypt("Message");
+	var decrypted = CassiaJS.base64.decrypt("Message");
+
 Binary Encode:
 
 	var encrypted = CassiaJS.binary.encrypt("Message");

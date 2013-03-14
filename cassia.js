@@ -182,6 +182,20 @@ var additive = {
     }
 };
 
+// Base64 Encode
+var base64 = {
+    encrypt: function(message) {
+        //log("debug", "Base64 encrypt input: " + message);
+        return btoa(message);
+        //log("debug", "Base64 encrypt output: " + ris);
+    },
+    decrypt: function(message) {
+        //log("debug", "Base64 decrypt input: " + message);
+        return atob(message);
+        //log("debug", "Base64 decrypt output: " + ris);
+    }
+};
+
 // Binary Encode
 var binary = {
     encrypt: function(message) {
@@ -1008,6 +1022,7 @@ function Ciphers() {
     this.fibonacci = fibonacci;
     this.serie3n1 = serie3n1;
     this.randomkey = randomkey;
+    this.base64 = base64;
 }
 
 var Cassia = cassia = CassiaJS = cassiaJS = Cassiajs = cassiajs = new Ciphers();

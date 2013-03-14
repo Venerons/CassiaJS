@@ -3,6 +3,10 @@
 _Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
 _http://venerons.github.com/CassiaJS_
 
+### Update 14/03/2013
+
+* Add Base64 Encoding
+
 ### Update 28/12/2012
 
 * Add Reading Key
