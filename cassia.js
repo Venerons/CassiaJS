@@ -3,12 +3,12 @@
 
 // Log function
 function log(type, message) {
-    if ((typeof console != "undefined") && (window.console.log)) {
-        if (type === "log") console.log(message);
-        if (type === "info") console.info(message);
-        if (type === "warn") console.warn(message);
-        if (type === "debug") console.debug(message);
-        if (type === "error") console.error(message);
+    if ((typeof console !== "undefined") && (window.console.log)) {
+        if (type === "log") { console.log(message); }
+        if (type === "info") { console.info(message); }
+        if (type === "warn") { console.warn(message); }
+        if (type === "debug") { console.debug(message); }
+        if (type === "error") { console.error(message); }
     } else {
         window.alert(type + " " + message);
     }
@@ -16,12 +16,10 @@ function log(type, message) {
 
 // Generic Substitution Cipher
 var substitution = {
-    encrypt: function(message, alfa, beta) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
+    encrypt: function (message, alfa, beta) {
+        var ris = "", ord = 0, len = message.length, c = "";
         //log("debug", "substitution encrypt input: " + message);
-        for (i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
                 ord = alfa.indexOf(c);
@@ -33,12 +31,10 @@ var substitution = {
         //log("debug", "substitution encrypt output: " + ris);
         return ris;
     },
-    decrypt: function(message, alfa, beta) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
+    decrypt: function (message, alfa, beta) {
+        var ris = "", ord = 0, len = message.length, c = "";
         //log("debug", "substitution decrypt input: " + message);
-        for (i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
                 ord = beta.indexOf(c);
@@ -56,12 +52,12 @@ var substitution = {
 var albam = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890"),
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "albam encrypt input: " + message);
         return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "albam encrypt output: " + ris);
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         //log("debug", "albam decrypt input: " + message);
         return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "albam decrypt output: " + ris);
@@ -72,12 +68,12 @@ var albam = {
 var carbonaro = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     beta: new String("OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys"),
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "carbonaro encrypt input: " + message);
         return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "carbonaro encrypt output: " + ris);
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         //log("debug", "carbonaro decrypt input: " + message);
         return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "carbonaro decrypt output: " + ris);
@@ -88,12 +84,12 @@ var carbonaro = {
 var atbash = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210"),
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "atbash encrypt input: " + message);
         return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "atbash encrypt output: " + ris);
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         //log("debug", "atbash decrypt input: " + message);
         return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "atbash decrypt output: " + ris);
@@ -104,12 +100,12 @@ var atbash = {
 var cesare = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012"),
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "caesar encrypt input: " + message);
         return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "caesar encrypt output: " + ris);
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         //log("debug", "caesar decrypt input: " + message);
         return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "caesar decrypt output: " + ris);
@@ -120,12 +116,12 @@ var cesare = {
 var rot13 = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     beta: new String("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "ROT-13 encrypt input: " + message);
         return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "ROT-13 encrypt output: " + ris);
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         //log("debug", "ROT-13 decrypt input: " + message);
         return substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "ROT-13 decrypt output: " + ris);
@@ -136,7 +132,7 @@ var rot13 = {
 var t9 = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù"),
     beta: new String("222333444555666777788899992223334445556667777888999933268"),
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "T9 encrypt input: " + message);
         return substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "T9 encrypt output: " + ris);
@@ -146,12 +142,9 @@ var t9 = {
 // Additive Cipher
 var additive = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
-    encrypt: function(message, scostamento) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        shift = parseInt(scostamento); 
-        for (i = 0; i < len; i++) {
+    encrypt: function (message, scostamento) {
+        var ris = "", ord = 0, len = message.length, shift = parseInt(10, scostamento), c = "";
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = this.alfa.indexOf(c);
@@ -162,12 +155,9 @@ var additive = {
         }
         return ris;
     },
-    decrypt: function(message, scostamento) {
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        shift = parseInt(scostamento); 
-        for (i = 0; i < len; i++) {
+    decrypt: function (message, scostamento) {
+        var ris = "", ord = 0, len = message.length, shift = parseInt(10, scostamento), c = ""; 
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
@@ -184,12 +174,12 @@ var additive = {
 
 // Base64 Encode
 var base64 = {
-    encrypt: function(message) {
+    encrypt: function (message) {
         //log("debug", "Base64 encrypt input: " + message);
         return btoa(message);
         //log("debug", "Base64 encrypt output: " + ris);
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         //log("debug", "Base64 decrypt input: " + message);
         return atob(message);
         //log("debug", "Base64 decrypt output: " + ris);
@@ -198,13 +188,11 @@ var base64 = {
 
 // Binary Encode
 var binary = {
-    encrypt: function(message) {
+    encrypt: function (message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len; i++) {
+        var ris = "", ord = 0, len = message.length, c = "";
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
                 ord = alfa.indexOf(c);
@@ -215,13 +203,11 @@ var binary = {
         }
         return ris;
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len - 5; i++) {
+        var ris = "", ord = 0, len = message.length, c = "";
+        for (var i = 0; i < len - 5; i++) {
             c = "" + message.substring(i, i+6);
             trovato = false;
             j = 0;
@@ -238,20 +224,16 @@ var binary = {
 
 // Leet
 var leet = {
-    encrypt: function(message, version) {
-        testo = message.toUpperCase();
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        var beta;
-        base = ["4","8","(","|)","3","F","G","H","1","J","K","L","M","N","0","P","Q","Я","5","7","U","V","W","><","Ұ","2"];
+    encrypt: function (message, version) {
+        var testo = message.toUpperCase(), alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", beta,
+        base = ["4","8","(","|)","3","F","G","H","1","J","K","L","M","N","0","P","Q","Я","5","7","U","V","W","><","Ұ","2"],
         avanzato = ["4","8","(","|)","3","ƒ","9","|-|","1","_/","|<","|_","/\\/\\","|\\|","0","|º","[,]","Я","5","7","|_|","\\./","\\X/","><","Ұ","2"];
-        if ((version == "1") || (version == "base"))
+        if ((version === "1") || (version === "base"))
             beta = base;
         else
             beta = avanzato;
-        var ris = "";
-        var ord = 0;
-        var len = testo.length;
-        for (i = 0; i < len; i++) {
+        var ris = "", ord = 0, len = testo.length, c = "";
+        for (var i = 0; i < len; i++) {
             c = testo.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
@@ -266,8 +248,8 @@ var leet = {
 
 // Morse Code
 var morse = {
-    encrypt: function(message, separator) {
-        Morse = new Array();
+    encrypt: function (message, separator) {
+        var Morse = new Array();
         Morse['A'] = '•—';
         Morse['À'] = '•—';
         Morse['B'] = '—•••';
@@ -325,10 +307,8 @@ var morse = {
         Morse[' '] = '••——•—'; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['@'] = '•——•—•';
         message = message.toUpperCase();
-        var morse = "";
-        var ris = "";
-        var len = message.length;
-        for(conta = 0; conta < len; conta++){
+        var morse = "", ris = "", len = message.length, ch = "";
+        for(var conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
             morse += Morse[ch];
             morse += separator;
@@ -336,8 +316,8 @@ var morse = {
         ris = morse;
         return ris;
     },
-    decrypt: function(message, separator) {
-        Morse = new Array();
+    decrypt: function (message, separator) {
+        var Morse = new Array();
         Morse['•—'] = 'A';
         Morse['—•••'] = 'B';
         Morse['—•—•'] = 'C';
@@ -389,10 +369,8 @@ var morse = {
         Morse['••——•—'] = ' '; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['•——•—•'] = '@';
 
-        var ris = "";
-        var len = message.length;
-        sequenza = "";
-        for(conta = 0; conta < len; conta++){
+        var ris = "", len = message.length, sequenza = "", ch = "";
+        for(var conta = 0; conta < len; conta++){
             ch = message.charAt(conta);
             if (ch == separator) {
                 ris += Morse[sequenza];
@@ -408,25 +386,22 @@ var morse = {
 
 // One-Time Pad (Vernam Cipher)
 var onetimepad = {
-    encrypt: function(message, chiave) {
-        var key = chiave;
-        var ris = "";
-        var len = message.length;
-        for (i = 0; i < len; i++) {
-            m = testo.charCodeAt(i);
+    encrypt: function (message, key) {
+        var ris = "", len = message.length, m = "", k = "";
+        for (var i = 0; i < len; i++) {
+            m = message.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
             c = m + k;
             ris += String.fromCharCode(c);
         }
         return ris;
     },
-    decrypt: function(message, chiave) {
-        var ris = "";
-        var len = message.length;
-        for (i = 0; i < len; i++) {
-            m = testo.charCodeAt(i);
+    decrypt: function (message, key) {
+        var ris = "", len = message.length, m = "", k = "";
+        for (var i = 0; i < len; i++) {
+            m = message.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
-            c = m-k;
+            c = m - k;
             ris += String.fromCharCode(c);
         }
         return ris;
@@ -435,14 +410,12 @@ var onetimepad = {
 
 // Pizzini
 var pizzini = {
-    encrypt: function(message) {
+    encrypt: function (message) {
         message = message.toUpperCase();
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        beta = ["4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len; i++) {
+        var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        beta = ["4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"],
+        ris = "", ord = 0, len = message.length, c = "";
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
@@ -453,14 +426,12 @@ var pizzini = {
         }
         return ris;
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         message += "*";
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        beta = ['4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len - 1; i++) {
+        var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        beta = ['4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'],
+        ris = "", ord = 0, len = message.length, c = "", trovato = false, j = 0;
+        for (var i = 0; i < len - 1; i++) {
             c = message.charAt(i);
             trovato = false;
             j = 0;
@@ -491,14 +462,12 @@ var pizzini = {
 
 // Polibio
 var polibio = {
-    encrypt: function(message) {
+    encrypt: function (message) {
         message = message.toUpperCase();
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len; i++) {
+        var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"],
+        ris = "", ord = 0, len = message.length, c = "";
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if (c >= 'A' && c <= 'Z') {
                 ord = alfa.indexOf(c);
@@ -509,14 +478,12 @@ var polibio = {
         }
         return ris;
     },
-    decrypt: function(message) {
+    decrypt: function (message) {
         message = message + " ";
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
-        for (i = 0; i < len - 5; i++) {
+        var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"],
+        ris = "", ord = 0, len = message.length, c = "", d = "", num, trovato = false, j = 0;
+        for (var i = 0; i < len - 5; i++) {
             c = "" + message.charAt(i);
             d = "" + message.charAt(i+1);
             num = c + d;
@@ -541,8 +508,8 @@ var polibio = {
 
 // Pollux
 var pollux = {
-    encrypt: function(message, cpunto, clinea, cplus) {
-        Morse = new Array();
+    encrypt: function (message, cpunto, clinea, cplus) {
+        var Morse = new Array();
         Morse['A'] = '•—';
         Morse['À'] = '•—';
         Morse['B'] = '—•••';
@@ -600,27 +567,26 @@ var pollux = {
         Morse[' '] = '••——•—'; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['@'] = '•——•—•';
         message = message.toUpperCase();
-        morse = "";
-        var ris = "";
-        var len = message.length;
-        for(conta = 0; conta < len; conta++){
+        var morse = "", ris = "", len = message.length, ch = "";
+        for(var conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
             morse += Morse[ch]+'+';
         }
-        Cifrante = new Array();
+        var Cifrante = new Array();
         Cifrante['•'] = cpunto;
         Cifrante['—'] = clinea;
         Cifrante['+'] = cplus; 
         len = morse.length;
-        for(conta = 0; conta < len; conta++){
+        var sposta = 0;
+        for(var conta = 0; conta < len; conta++){
             ch  = morse.charAt(conta);
             sposta = Cifrante[ch].length * Math.random();
             ris += Cifrante[ch].charAt(sposta);
         }
         return ris;
     },
-    decrypt: function(message, cpunto, clinea, cplus) {
-        Morse = new Array();
+    decrypt: function (message, cpunto, clinea, cplus) {
+        var Morse = new Array();
         Morse['•—'] = 'A';
         Morse['—•••'] = 'B';
         Morse['—•—•'] = 'C';
@@ -672,20 +638,17 @@ var pollux = {
         Morse['••——•—'] = ' '; // in realtà sarebbe la sequenza per "sottolineato"
         Morse['•——•—•'] = '@';
         
-        morse = "";
-        var ris = "";
-        var len = message.length;
+        var morse = "", ris = "", len = message.length, ch = "", sequenza = "";
         
-        for(conta = 0; conta < len; conta++){
+        for(var conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
             if (cpunto.indexOf(ch) >= 0) morse += '•';
             if (clinea.indexOf(ch) >= 0) morse += '—';
             if (cplus.indexOf(ch) >= 0) morse += '+';
         }
         
-        var sequenza = "";
         len = morse.length;
-        for(conta = 0; conta < len; conta++){
+        for(var conta = 0; conta < len; conta++){
             ch = morse.charAt(conta);
             if (ch == '+') {
                 ris += Morse[sequenza];
@@ -701,15 +664,13 @@ var pollux = {
 
 // VIC Cipher
 var vic = {
-    encrypt: function(message, key) {
+    encrypt: function (message, key) {
         message = message.toUpperCase();
-        alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.";
-        beta = ["0","1","3","4","5","7","8","9","20","21","22","23","24","25","26","27","28","29","60","61","62","63","64","65","66","67","68","69"];
-        var ris = "";
-        var ord = 0;
-        var len = message.length;
+        var alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.",
+        beta = ["0","1","3","4","5","7","8","9","20","21","22","23","24","25","26","27","28","29","60","61","62","63","64","65","66","67","68","69"],
+        ris = "", ord = 0, len = message.length, c = "";
         // codifica da lettere a numeri
-        for (i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || c == '/' || c == '.'){
                 ord = alfa.indexOf(c);
@@ -720,12 +681,12 @@ var vic = {
         }
         // modifica dei numeri in base alla chiave
         len = ris.length;
-        var risultato = "";
-        for (i = 0; i < len; i++) {
+        var risultato = "", a, b, d;
+        for (var i = 0; i < len; i++) {
             c = ris.charAt(i);
             if (c >= '0' && c <= '9'){
-                a = parseInt(c);
-                b = parseInt(key.charAt(i % key.length));
+                a = parseInt(10, c);
+                b = parseInt(10, key.charAt(i % key.length));
                 d = a + b;
                 if (d > 9) d = d - 10;
                 risultato += String(d);
@@ -735,15 +696,14 @@ var vic = {
         }
         return risultato;
     },
-    decrypt: function(message, key) {
-        originale = message + "*";
-        testo = "";
-        alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.";
-        beta = ["0","1","3","4","5","7","8","9","0","1","2","3","4","5","6","7","8","9","0","1","2","3","4","5","6","7","8","9"];
-        risultato = "";
+    decrypt: function (message, key) {
+        var originale = message + "*", testo = "",
+        alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.",
+        beta = ["0","1","3","4","5","7","8","9","0","1","2","3","4","5","6","7","8","9","0","1","2","3","4","5","6","7","8","9"],
+        risultato = "", c = "", a , b, d;
         // modifica dei numeri in base alla chiave
         var len = originale.length;
-        for (i = 0; i < len; i++) {
+        for (var i = 0; i < len; i++) {
             c = originale.charAt(i);
             if (c >= '0' && c <= '9'){
                 a = parseInt(c);
@@ -757,7 +717,8 @@ var vic = {
          }
         // codifica da numeri a lettere
         len = testo.length;
-        for (i = 0; i < len - 1; i++) {
+        var trovato = false, j = 0;
+        for (var i = 0; i < len - 1; i++) {
             c = testo.charAt(i);
             trovato = false;
             j = 0;
@@ -783,12 +744,11 @@ var vic = {
 
 // RANDOM BREAK
 var randombreak = {
-    encrypt: function(message, reversing) {
+    encrypt: function (message, reversing) {
         //log("debug", "randombreak encrypt input: " + message);
-        tmp = "";
         message = message.replace(/ /g, "");
-        len = message.length;
-        for (i = 0; i < len; i++) {
+        var len = message.length, tmp = "", j, ris = "";
+        for (var i = 0; i < len; i++) {
             j = Math.floor(Math.random() * 6 + 2);
             if (len < i + j) {
                 j = len - i;
@@ -796,7 +756,6 @@ var randombreak = {
             tmp = tmp + message.substring(i, i + j) + " ";
             i += j - 1;
         }
-        ris = "";
         if (reversing) {
             len = tmp.length;
             for (i = 0; i < len; i++) {
@@ -808,13 +767,12 @@ var randombreak = {
         return ris;
         //log("debug", "randombreak encrypt output: " + ris);
     },
-    decrypt: function(message, reversing) {
+    decrypt: function (message, reversing) {
         //log("debug", "randombreak decrypt input: " + message);
-        ris = message.replace(/ /g, "");
+        var ris = message.replace(/ /g, "");
         if (reversing) {
-            len = ris.length;
-            tmp = "";
-            for (i = 0; i < len; i++) {
+            var len = ris.length, tmp = "";
+            for (var i = 0; i < len; i++) {
                 tmp = ris.charAt(i) + tmp;
             }
             ris = tmp;
@@ -826,7 +784,7 @@ var randombreak = {
 
 // TRANSPOSITION CIPHER
 var transposition = {
-    encrypt: function(message, cols) {
+    encrypt: function (message, cols) {
         //log("debug", "transposition encrypt input: " + message);
         if (cols < 2) {
             log("error", "cols parameter cannot be < 2. Your input: " + cols);
@@ -837,23 +795,22 @@ var transposition = {
             return;
         }
         // riempimento del testo con caratteri nulli
-        resto = message.length % cols;
+        var resto = message.length % cols;
         resto = (cols - resto) % cols;
-        for (i = 0; i < resto; i++){
+        for (var i = 0; i < resto; i++){
             message += 'x';
         }
         // trasposizione
-        ris = "";
-        righe = message.length / cols;
-        for (colonna = 0; colonna < cols; colonna++) {
-            for (conta = 0; conta < righe; conta++) {
+        var ris = "", righe = message.length / cols;
+        for (var colonna = 0; colonna < cols; colonna++) {
+            for (var conta = 0; conta < righe; conta++) {
                 ris += message.charAt(colonna + (cols * conta));
             }
         }
         return ris;
         //log("debug", "transposition encrypt output: " + ris);
     },
-    decrypt: function(message, cols) {
+    decrypt: function (message, cols) {
         //log("debug", "transposition decrypt input: " + message);
         if (cols < 2) {
             log("error", "cols parameter cannot be < 2. Your input: " + cols);
@@ -864,10 +821,9 @@ var transposition = {
             return;
         }
         // de-trasposizione
-        ris = "";
-        righe = message.length / cols;
-        for (conta = 0; conta < righe; conta++) {
-            for (colonna = 0; colonna < cols; colonna++) {
+        var ris = "", righe = message.length / cols;
+        for (var conta = 0; conta < righe; conta++) {
+            for (var colonna = 0; colonna < cols; colonna++) {
                 ris += message.charAt(conta + (righe * colonna));
             }
         }
@@ -878,24 +834,22 @@ var transposition = {
 
 // READING KEY
 var reading = {
-    generate: function(level) {
+    generate: function (level) {
         if (level == "") {
             log("error", "Insert a level to generate a key");
             return;
         }
-        for (i = 0; i < level.length; i++) {
+        for (var i = 0; i < level.length; i++) {
             if ((level.charAt(i) < "0") || (level.charAt(i) > "9")) {
                 log("error", "Level is not valid, insert a positive integer number < 30.");
                 return;
             }
         }
-        ris = "1 \b";
-        tmp = "";
-        num = parseInt(level);
+        var ris = "1 \b", tmp = "", num = parseInt(10, level);
         if ((num <= 30) && (num >= 0)) {
-            for (i = 0; i < num; i++) {
+            for (var i = 0; i < num; i++) {
                 len = ris.length - 2;
-                for (j = 0; j < len; j++) {
+                for (var j = 0; j < len; j++) {
                     if (ris.charAt(j) == ris.charAt(j + 1)) {
                         if (ris.charAt(j + 1) == ris.charAt(j + 2)) {
                             tmp += "3" + ris.charAt(j);
@@ -920,24 +874,20 @@ var reading = {
 
 // FIBONACCI
 var fibonacci = {
-    generate: function(level, separator) {
+    generate: function (level, separator) {
         if (level == "") {
             log("error", "Insert a level to generate a key");
             return;
         }
-        for (i = 0; i < level.length; i++) {
+        for (var i = 0; i < level.length; i++) {
             if ((level.charAt(i) < "0") || (level.charAt(i) > "9")) {
                 log("error", "Level is not valid, insert a positive integer number < 91.");
                 return;
             }
         }
-        ris = "0" + separator + "1";
-        n1 = 0;
-        n2 = 1;
-        var t;
-        num = parseInt(level);
+        var ris = "0" + separator + "1", n1 = 0, n2 = 1, t, num = parseInt(10, level);
         if ((num <= 91) && (num > 0)) {
-            for (i = 0; i < num; i++) {
+            for (var i = 0; i < num; i++) {
                 t = n2;
                 n2 += n1;
                 n1 = t;
@@ -952,23 +902,22 @@ var fibonacci = {
 
 // 3n+1 SERIE
 var serie3n1 = {
-    generate: function(input, separator) {
+    generate: function (input, separator) {
         if (input == "") {
             log("error", "Insert a number to generate a key");
             return;
         }
-        for (i = 0; i < input.length; i++) {
+        for (var i = 0; i < input.length; i++) {
             if ((input.charAt(i) < "0") || (input.charAt(i) > "9")) {
                 log("error", "The specified input is not valid, insert a positive integer");
                 return;
             }
         }
-        if (parseInt(input) < 1) {
+        if (parseInt(10, input) < 1) {
             log("error", "The specified input is not valid, insert a positive integer");
             return;
         }
-        ris = ""; 
-        num = parseInt(input);
+        var ris = "", num = parseInt(10, input);
         while (num != 1) {
             if ((num % 2) == 0) {
                 num = num / 2;
@@ -985,14 +934,13 @@ var serie3n1 = {
 
 // RANDOM KEY
 var randomkey = {
-    generate: function(length, charset) {
+    generate: function (length, charset) {
         if (charset == "") {
             log("error", "Insert a charset to generate a key");
             return;
         }
-        ris = "";
-        l = charset.length;
-        for (i = 0; i < length; i++) {
+        var ris = "", l = charset.length;
+        for (var i = 0; i < length; i++) {
             ris += charset.charAt(Math.floor(Math.random() * l));
         }
         return ris;
