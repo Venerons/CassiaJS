@@ -1,6 +1,6 @@
 # CassiaJS
 
-_Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
+_Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License._
 
 CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptographic algoritms.
 

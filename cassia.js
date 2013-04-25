@@ -1,5 +1,5 @@
-// Copyright (c) 2012 Daniele Veneroni. Released under MIT License. 
-// http://venerons.github.com/CassiaJS
+// Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License. 
+// http://venerons.github.io/CassiaJS
 
 // Log function
 function log(type, message) {

@@ -1,7 +1,12 @@
 # CassiaJS Changelog
 
-_Copyright (c) 2012 Daniele Veneroni. Released under MIT License._
-_http://venerons.github.com/CassiaJS_
+_Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License._
+_http://venerons.github.io/CassiaJS_
+
+### Update 25/04/2013
+
+* Add build shell script
+* Update copyright
 
 ### Update 15/03/2013
 
