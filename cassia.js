@@ -14,8 +14,10 @@ function log(type, message) {
     }
 }
 
+var CassiaJS = cassiaJS = Cassiajs = cassiajs = Cassia = cassia = {};
+
 // Generic Substitution Cipher
-var substitution = {
+CassiaJS.substitution = {
     encrypt: function (message, alfa, beta) {
         var ris = "", ord = 0, len = message.length, c = "";
         //log("debug", "substitution encrypt input: " + message);
@@ -49,98 +51,98 @@ var substitution = {
 };
 
 // Albam Cipher
-var albam = {
+CassiaJS.albam = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890"),
     encrypt: function (message) {
         //log("debug", "albam encrypt input: " + message);
-        return substitution.encrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "albam encrypt output: " + ris);
     },
     decrypt: function (message) {
         //log("debug", "albam decrypt input: " + message);
-        return substitution.decrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "albam decrypt output: " + ris);
     }
 };
 
 // Alfabeto Carbonaro
-var carbonaro = {
+CassiaJS.carbonaro = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     beta: new String("OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys"),
     encrypt: function (message) {
         //log("debug", "carbonaro encrypt input: " + message);
-        return substitution.encrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "carbonaro encrypt output: " + ris);
     },
     decrypt: function (message) {
         //log("debug", "carbonaro decrypt input: " + message);
-        return substitution.decrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "carbonaro decrypt output: " + ris);
     }
 };
 
 // Atbash Cipher
-var atbash = {
+CassiaJS.atbash = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210"),
     encrypt: function (message) {
         //log("debug", "atbash encrypt input: " + message);
-        return substitution.encrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "atbash encrypt output: " + ris);
     },
     decrypt: function (message) {
         //log("debug", "atbash decrypt input: " + message);
-        return substitution.decrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "atbash decrypt output: " + ris);
     }
 };
 
 // Caesar Cipher
-var cesare = {
+CassiaJS.cesare = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
     beta: new String("DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012"),
     encrypt: function (message) {
         //log("debug", "caesar encrypt input: " + message);
-        return substitution.encrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "caesar encrypt output: " + ris);
     },
     decrypt: function (message) {
         //log("debug", "caesar decrypt input: " + message);
-        return substitution.decrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "caesar decrypt output: " + ris);
     }
 };
 
 // ROT-13
-var rot13 = {
+CassiaJS.rot13 = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     beta: new String("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
     encrypt: function (message) {
         //log("debug", "ROT-13 encrypt input: " + message);
-        return substitution.encrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "ROT-13 encrypt output: " + ris);
     },
     decrypt: function (message) {
         //log("debug", "ROT-13 decrypt input: " + message);
-        return substitution.decrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
         //log("debug", "ROT-13 decrypt output: " + ris);
     }
 };
 
 // T9
-var t9 = {
+CassiaJS.t9 = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù"),
     beta: new String("222333444555666777788899992223334445556667777888999933268"),
     encrypt: function (message) {
         //log("debug", "T9 encrypt input: " + message);
-        return substitution.encrypt(message, this.alfa, this.beta);
+        return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
         //log("debug", "T9 encrypt output: " + ris);
     }
 };
 
 // Additive Cipher
-var additive = {
+CassiaJS.additive = {
     alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
     encrypt: function (message, scostamento) {
         var ris = "", ord = 0, len = message.length, shift = parseInt(10, scostamento), c = "";
@@ -173,7 +175,7 @@ var additive = {
 };
 
 // Base64 Encode
-var base64 = {
+CassiaJS.base64 = {
     encrypt: function (message) {
         //log("debug", "Base64 encrypt input: " + message);
         return btoa(message);
@@ -187,7 +189,7 @@ var base64 = {
 };
 
 // Binary Encode
-var binary = {
+CassiaJS.binary = {
     encrypt: function (message) {
         alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
@@ -223,7 +225,7 @@ var binary = {
 };
 
 // Leet
-var leet = {
+CassiaJS.leet = {
     encrypt: function (message, version) {
         var testo = message.toUpperCase(), alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", beta,
         base = ["4","8","(","|)","3","F","G","H","1","J","K","L","M","N","0","P","Q","Я","5","7","U","V","W","><","Ұ","2"],
@@ -247,7 +249,7 @@ var leet = {
 };
 
 // Morse Code
-var morse = {
+CassiaJS.morse = {
     encrypt: function (message, separator) {
         var Morse = new Array();
         Morse['A'] = '•—';
@@ -385,7 +387,7 @@ var morse = {
 };
 
 // One-Time Pad (Vernam Cipher)
-var onetimepad = {
+CassiaJS.onetimepad = {
     encrypt: function (message, key) {
         var ris = "", len = message.length, m = "", k = "";
         for (var i = 0; i < len; i++) {
@@ -409,7 +411,7 @@ var onetimepad = {
 };
 
 // Pizzini
-var pizzini = {
+CassiaJS.pizzini = {
     encrypt: function (message) {
         message = message.toUpperCase();
         var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -461,7 +463,7 @@ var pizzini = {
 };
 
 // Polibio
-var polibio = {
+CassiaJS.polibio = {
     encrypt: function (message) {
         message = message.toUpperCase();
         var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -507,7 +509,7 @@ var polibio = {
 };
 
 // Pollux
-var pollux = {
+CassiaJS.pollux = {
     encrypt: function (message, cpunto, clinea, cplus) {
         var Morse = new Array();
         Morse['A'] = '•—';
@@ -663,7 +665,7 @@ var pollux = {
 };
 
 // VIC Cipher
-var vic = {
+CassiaJS.vic = {
     encrypt: function (message, key) {
         message = message.toUpperCase();
         var alfa = "ETAONRISBCDFGHJKLMPQ/UVWXYZ.",
@@ -743,7 +745,7 @@ var vic = {
 };
 
 // RANDOM BREAK
-var randombreak = {
+CassiaJS.randombreak = {
     encrypt: function (message, reversing) {
         //log("debug", "randombreak encrypt input: " + message);
         message = message.replace(/ /g, "");
@@ -783,7 +785,7 @@ var randombreak = {
 };
 
 // TRANSPOSITION CIPHER
-var transposition = {
+CassiaJS.transposition = {
     encrypt: function (message, cols) {
         //log("debug", "transposition encrypt input: " + message);
         if (cols < 2) {
@@ -833,7 +835,7 @@ var transposition = {
 };
 
 // READING KEY
-var reading = {
+CassiaJS.reading = {
     generate: function (level) {
         if (level == "") {
             log("error", "Insert a level to generate a key");
@@ -873,7 +875,7 @@ var reading = {
 };
 
 // FIBONACCI
-var fibonacci = {
+CassiaJS.fibonacci = {
     generate: function (level, separator) {
         if (level == "") {
             log("error", "Insert a level to generate a key");
@@ -901,7 +903,7 @@ var fibonacci = {
 };
 
 // 3n+1 SERIE
-var serie3n1 = {
+CassiaJS.serie3n1 = {
     generate: function (input, separator) {
         if (input == "") {
             log("error", "Insert a number to generate a key");
@@ -933,7 +935,7 @@ var serie3n1 = {
 };
 
 // RANDOM KEY
-var randomkey = {
+CassiaJS.randomkey = {
     generate: function (length, charset) {
         if (charset == "") {
             log("error", "Insert a charset to generate a key");
@@ -946,31 +948,3 @@ var randomkey = {
         return ris;
     }
 };
-
-function Ciphers() {
-    this.albam = albam;
-    this.carbonaro = carbonaro;
-    this.atbash = atbash;
-    this.cesare = cesare;
-    this.additive = additive;
-    this.binary = binary;
-    this.leet = leet;
-    this.morse = morse;
-    this.onetimepad = onetimepad;
-    this.pizzini = pizzini;
-    this.polibio = polibio;
-    this.pollux = pollux;
-    this.rot13 = rot13;
-    this.t9 = t9;
-    this.vic = vic;
-    this.substitution = substitution;
-    this.randombreak = randombreak;
-    this.transposition = transposition;
-    this.reading = reading;
-    this.fibonacci = fibonacci;
-    this.serie3n1 = serie3n1;
-    this.randomkey = randomkey;
-    this.base64 = base64;
-}
-
-var Cassia = cassia = CassiaJS = cassiaJS = Cassiajs = cassiajs = new Ciphers();
