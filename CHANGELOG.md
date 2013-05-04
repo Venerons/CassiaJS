@@ -3,6 +3,12 @@
 _Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License._
 _http://venerons.github.io/CassiaJS_
 
+### Update 04/05/2013
+
+* Lot of code optimizations
+* Lot of Bug Fixs
+* Update example.html
+
 ### Update 03/05/2013
 
 * Better handling of the CassiaJS namespace

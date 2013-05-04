@@ -1,9 +1,10 @@
 // Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License. 
 // http://venerons.github.io/CassiaJS
+//"use strict";
 
 // Log function
 function log(type, message) {
-    if ((typeof console !== "undefined") && (window.console.log)) {
+    if ((console !== "undefined") && (window.console.log)) {
         if (type === "log") { console.log(message); }
         if (type === "info") { console.info(message); }
         if (type === "warn") { console.warn(message); }
@@ -52,8 +53,8 @@ CassiaJS.substitution = {
 
 // Albam Cipher
 CassiaJS.albam = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
-    beta: new String("LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    beta: "LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890",
     encrypt: function (message) {
         //log("debug", "albam encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
@@ -68,8 +69,8 @@ CassiaJS.albam = {
 
 // Alfabeto Carbonaro
 CassiaJS.carbonaro = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
-    beta: new String("OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    beta: "OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys",
     encrypt: function (message) {
         //log("debug", "carbonaro encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
@@ -84,8 +85,8 @@ CassiaJS.carbonaro = {
 
 // Atbash Cipher
 CassiaJS.atbash = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
-    beta: new String("ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    beta: "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210",
     encrypt: function (message) {
         //log("debug", "atbash encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
@@ -100,8 +101,8 @@ CassiaJS.atbash = {
 
 // Caesar Cipher
 CassiaJS.cesare = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"),
-    beta: new String("DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    beta: "DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012",
     encrypt: function (message) {
         //log("debug", "caesar encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
@@ -116,8 +117,8 @@ CassiaJS.cesare = {
 
 // ROT-13
 CassiaJS.rot13 = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
-    beta: new String("NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+    beta: "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm",
     encrypt: function (message) {
         //log("debug", "ROT-13 encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
@@ -132,8 +133,8 @@ CassiaJS.rot13 = {
 
 // T9
 CassiaJS.t9 = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù"),
-    beta: new String("222333444555666777788899992223334445556667777888999933268"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù",
+    beta: "222333444555666777788899992223334445556667777888999933268",
     encrypt: function (message) {
         //log("debug", "T9 encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
@@ -143,9 +144,9 @@ CassiaJS.t9 = {
 
 // Additive Cipher
 CassiaJS.additive = {
-    alfa: new String("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),
+    alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
     encrypt: function (message, scostamento) {
-        var ris = "", ord = 0, len = message.length, shift = parseInt(10, scostamento), c = "";
+        var ris = "", ord = 0, len = message.length, shift = parseInt(scostamento, 10), c = "";
         for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
@@ -158,14 +159,14 @@ CassiaJS.additive = {
         return ris;
     },
     decrypt: function (message, scostamento) {
-        var ris = "", ord = 0, len = message.length, shift = parseInt(10, scostamento), c = ""; 
+        var ris = "", ord = 0, len = message.length, shift = parseInt(scostamento, 10), c = "", r; 
         for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
-                ord = alfa.indexOf(c);
+                ord = this.alfa.indexOf(c);
                 r = ord - shift;
                 if (r < 0) { r += 52; }
-                    ris += alfa.charAt(r);
+                    ris += this.alfa.charAt(r);
                 } else {
                     ris += c;
                 }
@@ -191,9 +192,9 @@ CassiaJS.base64 = {
 // Binary Encode
 CassiaJS.binary = {
     encrypt: function (message) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
-        var ris = "", ord = 0, len = message.length, c = "";
+        var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+        beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"],
+        ris = "", ord = 0, len = message.length, c = "";
         for (var i = 0; i < len; i++) {
             c = message.charAt(i);
             if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
@@ -206,16 +207,16 @@ CassiaJS.binary = {
         return ris;
     },
     decrypt: function (message) {
-        alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"];
-        var ris = "", ord = 0, len = message.length, c = "";
+        var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+        beta = ["000000","000001","000010","000011","000100","000101","000110","000111","001000","001001","001010","001011","001100","001101","001110","001111","010000","010001","010010","010011","010100","010101","010110","010111","011000","011001","011010","011011","011100","011101","011110","011111","100000","100001","100010","100011","100100","100101","100110","100111","101000","101001","101010","101011","101100","101101","101110","101111","110000","110001","110010","110011"],
+        ris = "", len = message.length, c = "", trovato, j, cod;
         for (var i = 0; i < len - 5; i++) {
             c = "" + message.substring(i, i+6);
             trovato = false;
             j = 0;
             while ((j < 52) && (!trovato)) {
                 cod = beta[j];
-                if (c == cod) { ris += alfa.charAt(j); trovato = true; }
+                if (c === cod) { ris += alfa.charAt(j); trovato = true; }
                 j++;
             }
             if (!trovato) { ris += c.charAt(0); } else { i += 5; }
@@ -230,10 +231,11 @@ CassiaJS.leet = {
         var testo = message.toUpperCase(), alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", beta,
         base = ["4","8","(","|)","3","F","G","H","1","J","K","L","M","N","0","P","Q","Я","5","7","U","V","W","><","Ұ","2"],
         avanzato = ["4","8","(","|)","3","ƒ","9","|-|","1","_/","|<","|_","/\\/\\","|\\|","0","|º","[,]","Я","5","7","|_|","\\./","\\X/","><","Ұ","2"];
-        if ((version === "1") || (version === "base"))
+        if ((version === "1") || (version === "base")) {
             beta = base;
-        else
+        } else {
             beta = avanzato;
+        }
         var ris = "", ord = 0, len = testo.length, c = "";
         for (var i = 0; i < len; i++) {
             c = testo.charAt(i);
@@ -251,39 +253,39 @@ CassiaJS.leet = {
 // Morse Code
 CassiaJS.morse = {
     encrypt: function (message, separator) {
-        var Morse = new Array();
-        Morse['A'] = '•—';
+        var Morse = [];
+        Morse.A = '•—';
         Morse['À'] = '•—';
-        Morse['B'] = '—•••';
-        Morse['C'] = '—•—•';
-        Morse['D'] = '—••';
-        Morse['E'] = '•';
+        Morse.B = '—•••';
+        Morse.C = '—•—•';
+        Morse.D = '—••';
+        Morse.E = '•';
         Morse['È'] = '•';
         Morse['É'] = '•';
-        Morse['F'] = '••—•';
-        Morse['G'] = '——•';
-        Morse['H'] = '••••';
-        Morse['I'] = '••';
+        Morse.F = '••—•';
+        Morse.G = '——•';
+        Morse.H = '••••';
+        Morse.I = '••';
         Morse['Ì'] = '••';
-        Morse['J'] = '•———';
-        Morse['K'] = '—•—';
-        Morse['L'] = '•—••';
-        Morse['M'] = '——';
-        Morse['N'] = '—•';
-        Morse['O'] = '———';
+        Morse.J = '•———';
+        Morse.K = '—•—';
+        Morse.L = '•—••';
+        Morse.M = '——';
+        Morse.N = '—•';
+        Morse.O = '———';
         Morse['Ò'] = '———';
-        Morse['P'] = '•——•';
-        Morse['Q'] = '——•—';
-        Morse['R'] = '•—•';
-        Morse['S'] = '•••';
-        Morse['T'] = '—';
-        Morse['U'] = '••—';
+        Morse.P = '•——•';
+        Morse.Q = '——•—';
+        Morse.R = '•—•';
+        Morse.S = '•••';
+        Morse.T = '—';
+        Morse.U = '••—';
         Morse['Ù'] = '••—';
-        Morse['V'] = '•••—';
-        Morse['W'] = '•——';
-        Morse['X'] = '—••—';
-        Morse['Y'] = '—•——';
-        Morse['Z'] = '——••';
+        Morse.V = '•••—';
+        Morse.W = '•——';
+        Morse.X = '—••—';
+        Morse.Y = '—•——';
+        Morse.Z = '——••';
         Morse['1'] = '•————';
         Morse['2'] = '••———';
         Morse['3'] = '•••——';
@@ -312,14 +314,13 @@ CassiaJS.morse = {
         var morse = "", ris = "", len = message.length, ch = "";
         for(var conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
-            morse += Morse[ch];
-            morse += separator;
+            morse += Morse[ch] + separator;
         }
         ris = morse;
         return ris;
     },
     decrypt: function (message, separator) {
-        var Morse = new Array();
+        var Morse = [];
         Morse['•—'] = 'A';
         Morse['—•••'] = 'B';
         Morse['—•—•'] = 'C';
@@ -374,7 +375,7 @@ CassiaJS.morse = {
         var ris = "", len = message.length, sequenza = "", ch = "";
         for(var conta = 0; conta < len; conta++){
             ch = message.charAt(conta);
-            if (ch == separator) {
+            if (ch === separator) {
                 ris += Morse[sequenza];
                 // ris += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
                 sequenza = "";
@@ -389,7 +390,7 @@ CassiaJS.morse = {
 // One-Time Pad (Vernam Cipher)
 CassiaJS.onetimepad = {
     encrypt: function (message, key) {
-        var ris = "", len = message.length, m = "", k = "";
+        var ris = "", len = message.length, m = "", k = "", c;
         for (var i = 0; i < len; i++) {
             m = message.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
@@ -399,7 +400,7 @@ CassiaJS.onetimepad = {
         return ris;
     },
     decrypt: function (message, key) {
-        var ris = "", len = message.length, m = "", k = "";
+        var ris = "", len = message.length, m = "", k = "", c;
         for (var i = 0; i < len; i++) {
             m = message.charCodeAt(i);
             k = key.charCodeAt(i % key.length);
@@ -432,23 +433,23 @@ CassiaJS.pizzini = {
         message += "*";
         var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         beta = ['4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9'],
-        ris = "", ord = 0, len = message.length, c = "", trovato = false, j = 0;
+        ris = "", len = message.length, c = "", trovato = false, j = 0;
         for (var i = 0; i < len - 1; i++) {
             c = message.charAt(i);
             trovato = false;
             j = 0;
-            if (c == '1') { 
+            if (c === '1') { 
                 j = 6;
                 i++;
                 c = message.charAt(i);
             } else 
-                if (c == '2') {
+                if (c === '2') {
                     j = 16;
                     i++;
                     c = message.charAt(i);
                 }
             while ((j < 26) && (!trovato)) {
-                if (c == beta[j]) {
+                if (c === beta[j]) {
                     ris += alfa.charAt(j);
                     trovato = true;
                 }
@@ -484,7 +485,7 @@ CassiaJS.polibio = {
         message = message + " ";
         var alfa = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
         beta = ["11","12","13","14","15","21","22","23","24","24","25","31","32","33","34","35","41","42","43","44","45","51","52","53","54","55"],
-        ris = "", ord = 0, len = message.length, c = "", d = "", num, trovato = false, j = 0;
+        ris = "", len = message.length, c = "", d = "", num, trovato = false, j = 0;
         for (var i = 0; i < len - 5; i++) {
             c = "" + message.charAt(i);
             d = "" + message.charAt(i+1);
@@ -492,7 +493,7 @@ CassiaJS.polibio = {
             trovato = false;
             j = 0;
             while ((j < 26) && (!trovato)) {
-                if (num == beta[j]) {
+                if (num === beta[j]) {
                     ris += alfa.charAt(j);
                     trovato = true;
                 }
@@ -511,75 +512,17 @@ CassiaJS.polibio = {
 // Pollux
 CassiaJS.pollux = {
     encrypt: function (message, cpunto, clinea, cplus) {
-        var Morse = new Array();
-        Morse['A'] = '•—';
-        Morse['À'] = '•—';
-        Morse['B'] = '—•••';
-        Morse['C'] = '—•—•';
-        Morse['D'] = '—••';
-        Morse['E'] = '•';
-        Morse['È'] = '•';
-        Morse['É'] = '•';
-        Morse['F'] = '••—•';
-        Morse['G'] = '——•';
-        Morse['H'] = '••••';
-        Morse['I'] = '••';
-        Morse['Ì'] = '••';
-        Morse['J'] = '•———';
-        Morse['K'] = '—•—';
-        Morse['L'] = '•—••';
-        Morse['M'] = '——';
-        Morse['N'] = '—•';
-        Morse['O'] = '———';
-        Morse['Ò'] = '———';
-        Morse['P'] = '•——•';
-        Morse['Q'] = '——•—';
-        Morse['R'] = '•—•';
-        Morse['S'] = '•••';
-        Morse['T'] = '—';
-        Morse['U'] = '••—';
-        Morse['Ù'] = '••—';
-        Morse['V'] = '•••—';
-        Morse['W'] = '•——';
-        Morse['X'] = '—••—';
-        Morse['Y'] = '—•——';
-        Morse['Z'] = '——••';
-        Morse['1'] = '•————';
-        Morse['2'] = '••———';
-        Morse['3'] = '•••——';
-        Morse['4'] = '••••—';
-        Morse['5'] = '•••••';
-        Morse['6'] = '—••••';
-        Morse['7'] = '——•••';
-        Morse['8'] = '———••';
-        Morse['9'] = '————•';
-        Morse['0'] = '—————';
-        Morse['.'] = '•—•—•—';
-        Morse[','] = '——••——';
-        Morse[':'] = '———•••';
-        Morse['?'] = '••——••';
-        Morse['='] = '—•••—';
-        Morse['-'] = '—••••—';
-        Morse['('] = '—•——•';
-        Morse[')'] = '—•——•—';
-        Morse['"'] = '•—••—•';
-        Morse['\''] = '•————•';
-        Morse['/'] = '—••—•';
-        Morse['!'] = '•—••—'; // equivalente di "EX"
-        Morse[' '] = '••——•—'; // in realtà sarebbe la sequenza per "sottolineato"
-        Morse['@'] = '•——•—•';
         message = message.toUpperCase();
-        var morse = "", ris = "", len = message.length, ch = "";
-        for(var conta = 0; conta < len; conta++){
-            ch  = message.charAt(conta);
-            morse += Morse[ch]+'+';
-        }
-        var Cifrante = new Array();
+        var morse = "", ris = "";
+
+        morse = CassiaJS.morse.encrypt(message, "+");
+
+        var Cifrante = [];
         Cifrante['•'] = cpunto;
         Cifrante['—'] = clinea;
-        Cifrante['+'] = cplus; 
-        len = morse.length;
-        var sposta = 0;
+        Cifrante['+'] = cplus;
+
+        var len = morse.length, sposta = 0, ch;
         for(var conta = 0; conta < len; conta++){
             ch  = morse.charAt(conta);
             sposta = Cifrante[ch].length * Math.random();
@@ -588,78 +531,17 @@ CassiaJS.pollux = {
         return ris;
     },
     decrypt: function (message, cpunto, clinea, cplus) {
-        var Morse = new Array();
-        Morse['•—'] = 'A';
-        Morse['—•••'] = 'B';
-        Morse['—•—•'] = 'C';
-        Morse['—••'] = 'D';
-        Morse['•'] = 'E';
-        Morse['••—•'] = 'F';
-        Morse['——•'] = 'G';
-        Morse['••••'] = 'H';
-        Morse['••'] = 'I';
-        Morse['•———'] = 'J';
-        Morse['—•—'] = 'K';
-        Morse['•—••'] = 'L';
-        Morse['——'] = 'M';
-        Morse['—•'] = 'N';
-        Morse['———'] = 'O';
-        Morse['•——•'] = 'P';
-        Morse['——•—'] = 'Q';
-        Morse['•—•'] = 'R';
-        Morse['•••'] = 'S';
-        Morse['—'] = 'T';
-        Morse['••—'] = 'U';
-        Morse['•••—'] = 'V';
-        Morse['•——'] = 'W';
-        Morse['—••—'] = 'X';
-        Morse['—•——'] = 'Y';
-        Morse['——••'] = 'Z';
-        Morse['•————'] = '1';
-        Morse['••———'] = '2';
-        Morse['•••——'] = '3';
-        Morse['••••—'] = '4';
-        Morse['•••••'] = '5';
-        Morse['—••••'] = '6';
-        Morse['——•••'] = '7';
-        Morse['———••'] = '8';
-        Morse['————•'] = '9';
-        Morse['—————'] = '0';
-        Morse['•—•—•—'] = '.';
-        Morse['——••——'] = ',';
-        Morse['———•••'] = ':';
-        Morse['••——••'] = '?';
-        Morse['—•••—'] = '=';
-        Morse['—••••—'] = '-';
-        Morse['—•——•'] = '(';
-        Morse['—•——•—'] = ')';
-        Morse['•—••—•'] = '"';
-        Morse['•————•'] = '\'';
-        Morse['—••—•'] = '/';
-        Morse['•—••—'] = '!'; // equivalente di "EX"
-        Morse['••——•—'] = ' '; // in realtà sarebbe la sequenza per "sottolineato"
-        Morse['•——•—•'] = '@';
-        
-        var morse = "", ris = "", len = message.length, ch = "", sequenza = "";
+        var morse = "", ris = "", len = message.length, ch = "";
         
         for(var conta = 0; conta < len; conta++){
             ch  = message.charAt(conta);
-            if (cpunto.indexOf(ch) >= 0) morse += '•';
-            if (clinea.indexOf(ch) >= 0) morse += '—';
-            if (cplus.indexOf(ch) >= 0) morse += '+';
+            if (cpunto.indexOf(ch) >= 0) { morse += '•'; }
+            if (clinea.indexOf(ch) >= 0) { morse += '—'; }
+            if (cplus.indexOf(ch) >= 0) { morse += '+'; }
         }
+
+        ris = CassiaJS.morse.decrypt(morse, "+");
         
-        len = morse.length;
-        for(var conta = 0; conta < len; conta++){
-            ch = morse.charAt(conta);
-            if (ch == '+') {
-                ris += Morse[sequenza];
-                // ris += " |" + sequenza + "| ";  // SCRITTURA DI DEBUG
-                sequenza = "";
-            } else {
-                sequenza += ch;
-            }
-        }
         return ris;
     }
 };
@@ -674,7 +556,7 @@ CassiaJS.vic = {
         // codifica da lettere a numeri
         for (var i = 0; i < len; i++) {
             c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || c == '/' || c == '.'){
+            if ((c >= 'A' && c <= 'Z') || c === '/' || c === '.') {
                 ord = alfa.indexOf(c);
                 ris += beta[ord];
             } else {
@@ -687,10 +569,10 @@ CassiaJS.vic = {
         for (var i = 0; i < len; i++) {
             c = ris.charAt(i);
             if (c >= '0' && c <= '9'){
-                a = parseInt(10, c);
-                b = parseInt(10, key.charAt(i % key.length));
+                a = parseInt(c, 10);
+                b = parseInt(key.charAt(i % key.length), 10);
                 d = a + b;
-                if (d > 9) d = d - 10;
+                if (d > 9) { d = d - 10; }
                 risultato += String(d);
             } else {
                 risultato += c;
@@ -708,10 +590,10 @@ CassiaJS.vic = {
         for (var i = 0; i < len; i++) {
             c = originale.charAt(i);
             if (c >= '0' && c <= '9'){
-                a = parseInt(c);
-                b = parseInt(key.charAt(i % key.length));
+                a = parseInt(c, 10);
+                b = parseInt(key.charAt(i % key.length), 10);
                 d = a - b;
-                if (d < 0) d = d + 10;
+                if (d < 0) { d = d + 10; }
                 testo += String(d);
             } else {
                 testo += c;
@@ -724,13 +606,19 @@ CassiaJS.vic = {
             c = testo.charAt(i);
             trovato = false;
             j = 0;
-            if (c == '2') { j = 8; i++; c = testo.charAt(i); } else if (c == '6') {
-                j = 18;
-                i++;
-                c = testo.charAt(i);
+            if (c === '2') { 
+                j = 8; 
+                i++; 
+                c = testo.charAt(i); 
+            } else {
+                if (c === '6') {
+                    j = 18;
+                    i++;
+                    c = testo.charAt(i);
+                }
             }
             while ((j < 28) && (!trovato)) {
-                if (c == beta[j]) {
+                if (c === beta[j]) {
                     risultato += alfa.charAt(j);
                     trovato = true;
                 }
@@ -837,7 +725,7 @@ CassiaJS.transposition = {
 // READING KEY
 CassiaJS.reading = {
     generate: function (level) {
-        if (level == "") {
+        if (level === "") {
             log("error", "Insert a level to generate a key");
             return;
         }
@@ -847,13 +735,13 @@ CassiaJS.reading = {
                 return;
             }
         }
-        var ris = "1 \b", tmp = "", num = parseInt(10, level);
+        var ris = "1 \b", tmp = "", num = parseInt(level, 10), len;
         if ((num <= 30) && (num >= 0)) {
             for (var i = 0; i < num; i++) {
                 len = ris.length - 2;
                 for (var j = 0; j < len; j++) {
-                    if (ris.charAt(j) == ris.charAt(j + 1)) {
-                        if (ris.charAt(j + 1) == ris.charAt(j + 2)) {
+                    if (ris.charAt(j) === ris.charAt(j + 1)) {
+                        if (ris.charAt(j + 1) === ris.charAt(j + 2)) {
                             tmp += "3" + ris.charAt(j);
                             j += 2;
                         } else {
@@ -877,7 +765,7 @@ CassiaJS.reading = {
 // FIBONACCI
 CassiaJS.fibonacci = {
     generate: function (level, separator) {
-        if (level == "") {
+        if (level === "") {
             log("error", "Insert a level to generate a key");
             return;
         }
@@ -887,13 +775,13 @@ CassiaJS.fibonacci = {
                 return;
             }
         }
-        var ris = "0" + separator + "1", n1 = 0, n2 = 1, t, num = parseInt(10, level);
+        var ris = "0" + separator + "1", n1 = 0, n2 = 1, t, num = parseInt(level, 10);
         if ((num <= 91) && (num > 0)) {
             for (var i = 0; i < num; i++) {
                 t = n2;
                 n2 += n1;
                 n1 = t;
-                ris += separator + n2
+                ris += separator + n2;
             }
             return ris;
         } else {
@@ -905,7 +793,7 @@ CassiaJS.fibonacci = {
 // 3n+1 SERIE
 CassiaJS.serie3n1 = {
     generate: function (input, separator) {
-        if (input == "") {
+        if (input === "") {
             log("error", "Insert a number to generate a key");
             return;
         }
@@ -915,13 +803,13 @@ CassiaJS.serie3n1 = {
                 return;
             }
         }
-        if (parseInt(10, input) < 1) {
+        if (parseInt(input, 10) < 1) {
             log("error", "The specified input is not valid, insert a positive integer");
             return;
         }
-        var ris = "", num = parseInt(10, input);
-        while (num != 1) {
-            if ((num % 2) == 0) {
+        var ris = "", num = parseInt(input, 10);
+        while (num !== 1) {
+            if ((num % 2) === 0) {
                 num = num / 2;
                 ris += String(num);
             } else {
@@ -937,7 +825,7 @@ CassiaJS.serie3n1 = {
 // RANDOM KEY
 CassiaJS.randomkey = {
     generate: function (length, charset) {
-        if (charset == "") {
+        if (charset === "") {
             log("error", "Insert a charset to generate a key");
             return;
         }
