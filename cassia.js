@@ -1,5 +1,11 @@
-// Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License. 
-// http://venerons.github.io/CassiaJS
+// ┌───────────────────────────────────────────────────────────────────────┐
+// │ CassiaJS - Cassia for JavaScript (http://venerons.github.io/CassiaJS) │
+// ├───────────────────────────────────────────────────────────────────────┤
+// │ Copyright (c) 2012-2013 Daniele Veneroni (http://venerons.github.io)  │
+// ├───────────────────────────────────────────────────────────────────────┤
+// │ Licensed under the MIT license.                                       │
+// └───────────────────────────────────────────────────────────────────────┘
+
 //"use strict";
 
 // Log function
