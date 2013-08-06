@@ -3,6 +3,13 @@
 _Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License._
 _http://venerons.github.io/CassiaJS_
 
+### Update 06/08/2013
+
+* Removed log function
+* Removed debug logs
+* Use Strict
+* Better substitution cipher
+
 ### Update 20/06/2013
 
 * Updated build.command

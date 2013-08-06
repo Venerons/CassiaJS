@@ -6,20 +6,7 @@
 // │ Licensed under the MIT license.                                       │
 // └───────────────────────────────────────────────────────────────────────┘
 
-//"use strict";
-
-// Log function
-function log(type, message) {
-    if ((console !== "undefined") && (window.console.log)) {
-        if (type === "log") { console.log(message); }
-        if (type === "info") { console.info(message); }
-        if (type === "warn") { console.warn(message); }
-        if (type === "debug") { console.debug(message); }
-        if (type === "error") { console.error(message); }
-    } else {
-        window.alert(type + " " + message);
-    }
-}
+"use strict";
 
 var CassiaJS = cassiaJS = Cassiajs = cassiajs = Cassia = cassia = {};
 
@@ -27,32 +14,28 @@ var CassiaJS = cassiaJS = Cassiajs = cassiajs = Cassia = cassia = {};
 CassiaJS.substitution = {
     encrypt: function (message, alfa, beta) {
         var ris = "", ord = 0, len = message.length, c = "";
-        //log("debug", "substitution encrypt input: " + message);
         for (var i = 0; i < len; i++) {
             c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = alfa.indexOf(c);
+            ord = alfa.indexOf(c);
+            if (ord >= 0) {
                 ris += beta.charAt(ord);
             } else {
                 ris += c;
             }
         }
-        //log("debug", "substitution encrypt output: " + ris);
         return ris;
     },
     decrypt: function (message, alfa, beta) {
         var ris = "", ord = 0, len = message.length, c = "";
-        //log("debug", "substitution decrypt input: " + message);
         for (var i = 0; i < len; i++) {
             c = message.charAt(i);
-            if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
-                ord = beta.indexOf(c);
+            ord = beta.indexOf(c);
+            if (ord >= 0) {
                 ris += alfa.charAt(ord);
             } else {
                 ris += c;
             }
         }
-        //log("debug", "substitution decrypt output: " + ris);
         return ris;
     }
 };
@@ -62,14 +45,10 @@ CassiaJS.albam = {
     alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
     beta: "LMNOPQRSTUVWXYZABCDEFGHIJKlmnopqrstuvwxyzabcdefghijk1234567890",
     encrypt: function (message) {
-        //log("debug", "albam encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
-        //log("debug", "albam encrypt output: " + ris);
     },
     decrypt: function (message) {
-        //log("debug", "albam decrypt input: " + message);
         return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
-        //log("debug", "albam decrypt output: " + ris);
     }
 };
 
@@ -78,14 +57,10 @@ CassiaJS.carbonaro = {
     alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
     beta: "OPGTIVCHEJKRNMABQLZDUFWXYSopgtivchejkrnmabqlzdufwxys",
     encrypt: function (message) {
-        //log("debug", "carbonaro encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
-        //log("debug", "carbonaro encrypt output: " + ris);
     },
     decrypt: function (message) {
-        //log("debug", "carbonaro decrypt input: " + message);
         return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
-        //log("debug", "carbonaro decrypt output: " + ris);
     }
 };
 
@@ -94,14 +69,10 @@ CassiaJS.atbash = {
     alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
     beta: "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba9876543210",
     encrypt: function (message) {
-        //log("debug", "atbash encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
-        //log("debug", "atbash encrypt output: " + ris);
     },
     decrypt: function (message) {
-        //log("debug", "atbash decrypt input: " + message);
         return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
-        //log("debug", "atbash decrypt output: " + ris);
     }
 };
 
@@ -110,14 +81,10 @@ CassiaJS.cesare = {
     alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
     beta: "DEFGHIJKLMNOPQRSTUVWXYZABCdefghijklmnopqrstuvwxyzabc3456789012",
     encrypt: function (message) {
-        //log("debug", "caesar encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
-        //log("debug", "caesar encrypt output: " + ris);
     },
     decrypt: function (message) {
-        //log("debug", "caesar decrypt input: " + message);
         return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
-        //log("debug", "caesar decrypt output: " + ris);
     }
 };
 
@@ -126,14 +93,10 @@ CassiaJS.rot13 = {
     alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
     beta: "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm",
     encrypt: function (message) {
-        //log("debug", "ROT-13 encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
-        //log("debug", "ROT-13 encrypt output: " + ris);
     },
     decrypt: function (message) {
-        //log("debug", "ROT-13 decrypt input: " + message);
         return CassiaJS.substitution.decrypt(message, this.alfa, this.beta);
-        //log("debug", "ROT-13 decrypt output: " + ris);
     }
 };
 
@@ -142,9 +105,7 @@ CassiaJS.t9 = {
     alfa: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzèéàòù",
     beta: "222333444555666777788899992223334445556667777888999933268",
     encrypt: function (message) {
-        //log("debug", "T9 encrypt input: " + message);
         return CassiaJS.substitution.encrypt(message, this.alfa, this.beta);
-        //log("debug", "T9 encrypt output: " + ris);
     }
 };
 
@@ -184,14 +145,10 @@ CassiaJS.additive = {
 // Base64 Encode
 CassiaJS.base64 = {
     encrypt: function (message) {
-        //log("debug", "Base64 encrypt input: " + message);
         return btoa(message);
-        //log("debug", "Base64 encrypt output: " + ris);
     },
     decrypt: function (message) {
-        //log("debug", "Base64 decrypt input: " + message);
         return atob(message);
-        //log("debug", "Base64 decrypt output: " + ris);
     }
 };
 
@@ -641,7 +598,6 @@ CassiaJS.vic = {
 // RANDOM BREAK
 CassiaJS.randombreak = {
     encrypt: function (message, reversing) {
-        //log("debug", "randombreak encrypt input: " + message);
         message = message.replace(/ /g, "");
         var len = message.length, tmp = "", j, ris = "";
         for (var i = 0; i < len; i++) {
@@ -661,10 +617,8 @@ CassiaJS.randombreak = {
             ris = tmp;
         }
         return ris;
-        //log("debug", "randombreak encrypt output: " + ris);
     },
     decrypt: function (message, reversing) {
-        //log("debug", "randombreak decrypt input: " + message);
         var ris = message.replace(/ /g, "");
         if (reversing) {
             var len = ris.length, tmp = "";
@@ -674,14 +628,12 @@ CassiaJS.randombreak = {
             ris = tmp;
         }
         return ris;
-        //log("debug", "randombreak decrypt output: " + ris);
     }
 };
 
 // TRANSPOSITION CIPHER
 CassiaJS.transposition = {
     encrypt: function (message, cols) {
-        //log("debug", "transposition encrypt input: " + message);
         if (cols < 2) {
             log("error", "cols parameter cannot be < 2. Your input: " + cols);
             return;
@@ -704,10 +656,8 @@ CassiaJS.transposition = {
             }
         }
         return ris;
-        //log("debug", "transposition encrypt output: " + ris);
     },
     decrypt: function (message, cols) {
-        //log("debug", "transposition decrypt input: " + message);
         if (cols < 2) {
             log("error", "cols parameter cannot be < 2. Your input: " + cols);
             return;
@@ -724,7 +674,6 @@ CassiaJS.transposition = {
             }
         }
         return ris;
-        //log("debug", "transposition decrypt output: " + ris);
     }
 };
 
