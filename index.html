@@ -35,10 +35,10 @@
           <p>JavaScript Cryptography Library</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/Venerons">Venerons</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <p><em>Copyright (c) 2012 Daniele Veneroni. Released under MIT License.</em></p>
+        <p><em>Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License.</em></p>
 
 <p>CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptographic algoritms.</p>
 
@@ -49,9 +49,16 @@
 
 <p>The library is called by using <code>CassiaJS</code> followed by the cipher name and the methods encrypt/decrypt.</p>
 
-<h2>API</h2>
+<h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
 
-<h3>Substitution Ciphers</h3>
+<p><a href="https://github.com/Venerons/CassiaJS/releases">Download latest release</a></p>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a name="substitution-ciphers" class="anchor" href="#substitution-ciphers"><span class="octicon octicon-link"></span></a>Substitution Ciphers</h3>
 
 <p>Generic Substitution Cipher:</p>
 
@@ -126,7 +133,8 @@ var encrypted = CassiaJS.pollux.encrypt("Message", chpoint, chline, chplus);
 var decrypted = CassiaJS.pollux.decrypt("Message", chpoint, chline, chplus);
 </code></pre>
 
-<h3>Polyalphabetic Ciphers</h3>
+<h3>
+<a name="polyalphabetic-ciphers" class="anchor" href="#polyalphabetic-ciphers"><span class="octicon octicon-link"></span></a>Polyalphabetic Ciphers</h3>
 
 <p>One-Time Pad (Vernam Cipher):</p>
 
@@ -141,7 +149,8 @@ var encrypted = CassiaJS.vic.encrypt("Message", key);
 var decrypted = CassiaJS.vic.decrypt("Message", key);
 </code></pre>
 
-<h3>Not really ciphers</h3>
+<h3>
+<a name="not-really-ciphers" class="anchor" href="#not-really-ciphers"><span class="octicon octicon-link"></span></a>Not really ciphers</h3>
 
 <p>Base64 Encode:</p>
 
@@ -168,7 +177,8 @@ var encrypted = CassiaJS.morse.encrypt("Message", separator);
 var decrypted = CassiaJS.morse.decrypt("Message", separator);
 </code></pre>
 
-<h3>Steganography</h3>
+<h3>
+<a name="steganography" class="anchor" href="#steganography"><span class="octicon octicon-link"></span></a>Steganography</h3>
 
 <p>Random Break:</p>
 
@@ -186,7 +196,8 @@ var encrypted = CassiaJS.transposition.encrypt("Message", cols);
 var decrypted = CassiaJS.transposition.decrypt("Message", cols);
 </code></pre>
 
-<h3>Key Generation</h3>
+<h3>
+<a name="key-generation" class="anchor" href="#key-generation"><span class="octicon octicon-link"></span></a>Key Generation</h3>
 
 <p>Reading Key:</p>
 
