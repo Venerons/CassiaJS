@@ -3,6 +3,11 @@
 _Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License._
 _http://venerons.github.io/CassiaJS_
 
+### Update 07/08/2013 (Version 1.0.0)
+
+* Tagged version 1.0.0
+* Build minified version
+
 ### Update 06/08/2013
 
 * Removed log function

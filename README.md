@@ -10,6 +10,10 @@ To import the library, use this code between the head tags on your page:
 
 The library is called by using `CassiaJS` followed by the cipher name and the methods encrypt/decrypt.
 
+## Download
+
+[Download latest release](https://github.com/Venerons/CassiaJS/releases)
+
 ## API
 
 ### Substitution Ciphers
