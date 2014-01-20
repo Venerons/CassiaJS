@@ -1,6 +1,6 @@
 # CassiaJS
 
-_Copyright (c) 2012-2013 Daniele Veneroni. Released under MIT License._
+_Copyright (c) 2012-2014 Daniele Veneroni. Released under MIT License._
 
 CassiaJS is a JavaScript library to encrypt/decrypt text with various cryptographic algoritms.
 
@@ -11,10 +11,6 @@ To import the library, use this code between the head tags on your page:
 ```
 
 The library is called by using `CassiaJS` followed by the cipher name and the methods encrypt/decrypt.
-
-## Download
-
-[Download latest release](https://github.com/Venerons/CassiaJS/releases)
 
 ## API
 

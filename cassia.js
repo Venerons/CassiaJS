@@ -1,11 +1,11 @@
 // ┌───────────────────────────────────────────────────────────────────────┐
 // │ CassiaJS - Cassia for JavaScript (http://venerons.github.io/CassiaJS) │
 // ├───────────────────────────────────────────────────────────────────────┤
-// │ Version 1.0.0 - 07/08/2013                                            │
+// │ Version 1.0.0 - 20/01/2014                                            │
 // ├───────────────────────────────────────────────────────────────────────┤
-// │ Copyright (c) 2012-2013 Daniele Veneroni (http://venerons.github.io)  │
+// │ Copyright (c) 2012-2014 Daniele Veneroni (http://venerons.github.io)  │
 // ├───────────────────────────────────────────────────────────────────────┤
-// │ Licensed under the MIT license.                                       │
+// │ Licensed under the MIT License (X11 License).                         │
 // └───────────────────────────────────────────────────────────────────────┘
 
 "use strict";
