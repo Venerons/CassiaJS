@@ -1,25 +1,39 @@
 #!/bin/sh
-echo -en "\033[1;31mStarting CassiaJS Build...\n\033[0m"
-cd /Users/Venerons/github/local/CassiaJS/
 #
-# HEADER
+# ENVIRONMENT
 #
-echo "// CassiaJS v1.0.0 | Copyright (c) 2012-2014 Daniele Veneroni | Licensed under the MIT License (X11 License)" > headerjs
+PROJECTNAME="CassiaJS"
+PROJECTVERSION="1.0.0"
+COPYRIGHT="Copyright (c) 2012-2014 Daniele Veneroni"
+LICENSE="Licensed under the MIT License (X11 License)"
+PROJECTDIR="/Users/Venerons/github/local/CassiaJS/"
+YUI="/Users/Venerons/Documents/Developer/yuicompressor-2.4.8.jar"
+buildjs() {
+	singlejs cassia.js cassia.min.js
+}
 #
-# JAVASCRIPT COMPRESSION
+# BUILD PROCEDURE
 #
-echo -en "\033[1;31mStarting JS compression...\n\033[0m"
-if [ -e cassia.min.js ]; then
-	rm cassia.min.js;
-fi
-java -jar /Users/Venerons/Documents/Developer/yuicompressor-2.4.8.jar cassia.js -o cassia.min.js --type js --charset utf-8 --preserve-semi
-echo "" >> cassia.min.js
-mv cassia.min.js tmp
-cat headerjs tmp > cassia.min.js
-rm tmp
-echo -en "\033[1;32mJS compression finished.\n\033[0m"
-#
-# CLEANUP
-#
+clear
+BLUE="\033[1;34m"
+GREEN="\033[32m"
+MAGENTA="\033[35m"
+NORMAL="\033[0m"
+echo "$BLUE \bStarting $PROJECTNAME Build...$NORMAL"
+cd $PROJECTDIR
+echo "// $PROJECTNAME v$PROJECTVERSION | $COPYRIGHT | $LICENSE" > headerjs
+singlejs() {
+	if [ -e $2 ]; then
+		rm $2;
+	fi
+	java -jar $YUI $1 -o $2 --type js --charset utf-8 --preserve-semi
+	echo "" >> $2
+	mv $2 tmp
+	cat headerjs tmp > $2
+	rm tmp
+}
+echo "$MAGENTA \bStarting JS compression...$NORMAL"
+buildjs
+echo "$GREEN \bJS compression finished.$NORMAL"
 rm headerjs
-echo -en "\033[1;32mCassiaJS Build finished.\n\033[0m"
+echo "$BLUE \b$PROJECTNAME build finished.$NORMAL"
